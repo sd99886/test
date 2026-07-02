@@ -1,0 +1,22 @@
+"""
+MaxCompute 系统配置文件（Notebook 版本）
+注意：此文件包含敏感信息，请勿提交到 Git
+"""
+
+# ============ MaxCompute 连接配置 ============
+ODPS_ACCESS_ID = 'YOUR_ACCESS_KEY_ID_HERE'          # 替换为你的 AccessKey ID
+ODPS_ACCESS_KEY = 'YOUR_ACCESS_KEY_SECRET_HERE'     # 替换为你的 AccessKey Secret
+ODPS_PROJECT = "cupshe_bigdata_ads"                 # MaxCompute 项目名
+ODPS_ENDPOINT = "https://service.eu-central-1.maxcompute.aliyun.com/api"  # Endpoint
+
+# ============ 代理配置（可选）============
+HTTP_PROXY = None
+HTTPS_PROXY = None
+
+# ============ 查询配置 ============
+MAX_RESULT_ROWS = 100      # SQL 查询最大返回行数
+SQL_TIMEOUT = 300          # SQL 执行超时时间（秒）
+
+# ============ 性能优化配置 ============
+ENABLE_INSTANCE_TUNNEL = True  # 启用 Instance Tunnel 加速数据传输
+TUNNEL_ENDPOINT = "https://dt.eu-central-1.maxcompute.aliyun.com"  # Tunnel Endpoint（与 ODPS Endpoint 同地域）
