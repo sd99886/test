@@ -1,4 +1,4 @@
-# MaxCompute 查询工具 - Git 敏感信息保护方案
+# MaxCompute 查询工具
 
 ## 📖 项目概述
 
@@ -23,7 +23,24 @@ git clone https://github.com/sd99886/test.git
 cd test
 ```
 
-### 2. 配置 AccessKey
+### 2. 阅读文档
+
+```bash
+# 查看 Git 敏感信息保护指南
+cat git_security/README.md
+```
+
+### 3. 初始化项目
+
+```bash
+# 运行演示（可选）
+python git_security/demo_git_security.py
+
+# 初始化项目
+python git_security/git_security_tool.py --init
+```
+
+### 4. 配置 AccessKey
 
 #### CLI 版本
 
@@ -43,7 +60,7 @@ cp config.py.example config.py
 vim config.py
 ```
 
-### 3. 运行查询
+### 5. 运行查询
 
 #### CLI 版本
 
@@ -63,91 +80,37 @@ jupyter notebook query.ipynb
 
 ## 🔐 敏感信息保护
 
-### 为什么需要保护？
+本项目采用**配置文件分离策略**，确保敏感信息不会泄露到 Git 仓库：
 
-GitHub Secret Scanning 会自动检测代码中的敏感信息（如 AccessKey），并阻止推送。这会导致：
-- ❌ 无法推送到远程仓库
-- ❌ 密钥泄露风险
-- ❌ Git 历史污染
+- ✅ `.gitignore` 自动忽略 `config.py` 等敏感文件
+- ✅ 提供 `config.py.example` 模板供团队参考
+- ✅ 本地保留真实配置，可正常使用
+- ✅ Git 历史中不包含任何敏感信息
 
-### 我们的解决方案
+### 详细文档
 
-本项目采用**配置文件分离策略**：
+所有敏感信息保护相关的工具和文档都在 [`git_security/`](git_security/) 文件夹中：
 
-| 文件类型 | 示例 | 是否提交到 Git | 说明 |
-|---------|------|--------------|------|
-| 真实配置 | `config.py` | ❌ 否 | 包含真实 AccessKey，仅本地使用 |
-| 配置模板 | `config.py.example` | ✅ 是 | 不含真实密钥，供团队参考 |
-| 忽略规则 | `.gitignore` | ✅ 是 | 确保敏感文件不被提交 |
+| 文件 | 说明 |
+|------|------|
+| [git_security/README.md](git_security/README.md) | 工具包主文档（必读） |
+| [git_security/QUICK_REFERENCE.md](git_security/QUICK_REFERENCE.md) | 快速参考卡片 |
+| [git_security/GIT_SECURITY_GUIDE.md](git_security/GIT_SECURITY_GUIDE.md) | 详细指南 |
+| [git_security/IMPLEMENTATION_SUMMARY.md](git_security/IMPLEMENTATION_SUMMARY.md) | 实施总结 |
+| [git_security/git_security_tool.py](git_security/git_security_tool.py) | 自动化脚本 |
+| [git_security/demo_git_security.py](git_security/demo_git_security.py) | 演示脚本 |
 
-### 自动化工具
-
-我们提供了完整的自动化工具链：
-
-#### 1. 初始化项目（首次使用）
-
-```bash
-python git_security_tool.py --init
-```
-
-功能：
-- 创建/更新 `.gitignore` 文件
-- 生成所有配置模板
-- 验证配置正确性
-
-#### 2. 检查敏感信息状态
+### 常用命令
 
 ```bash
-python git_security_tool.py --check
-```
+# 检查敏感信息状态
+python git_security/git_security_tool.py --check
 
-输出示例：
-```
-======================================================================
-【敏感信息检查】
-======================================================================
+# 安全提交代码
+python git_security/git_security_tool.py --commit "feat: 你的修改"
 
-[1] 检查 .gitignore 配置...
-  [OK] config.py 已被忽略
-
-[2] 检查配置文件...
-  找到 3 个配置文件:
-    - maxcompute_cli/config.py
-      ✓ 模板文件存在
-    - maxcompute_notebook/config.py
-      ✓ 模板文件存在
-
-[3] 检查 Git 历史...
-  共有 2 个提交
-
-[4] 检查暂存区...
-  [OK] 工作区干净
-
-======================================================================
-[SUCCESS] 所有检查通过！可以安全提交代码
-======================================================================
-```
-
-#### 3. 安全提交代码
-
-```bash
-python git_security_tool.py --commit "feat: 添加新功能"
-```
-
-功能：
-- 先执行敏感信息检查
-- 确认后提交代码
-- 可选推送到远程
-
-### 文档资源
-
-- 📘 [详细指南](GIT_SECURITY_GUIDE.md) - 完整的使用说明和故障排查
-- 📋 [快速参考](QUICK_REFERENCE.md) - 常用命令速查表
-- 🎬 [演示脚本](demo_git_security.py) - 交互式教程
-
-```bash
-# 运行演示
-python demo_git_security.py
+# 查看帮助
+python git_security/git_security_tool.py --help
 ```
 
 ---
@@ -157,10 +120,13 @@ python demo_git_security.py
 ```
 test/
 ├── .gitignore                          # Git 忽略规则
-├── git_security_tool.py                # 自动化安全工具
-── GIT_SECURITY_GUIDE.md               # 详细指南
-├── QUICK_REFERENCE.md                  # 快速参考卡片
-├── demo_git_security.py                # 演示脚本
+├── git_security/                       # ← Git 敏感信息保护工具包
+│   ├── README.md                       # ✓ 工具包主文档
+│   ├── QUICK_REFERENCE.md              # ✓ 快速参考
+│   ├── GIT_SECURITY_GUIDE.md           # ✓ 详细指南
+│   ├── IMPLEMENTATION_SUMMARY.md       # ✓ 实施总结
+│   ├── git_security_tool.py            # ✓ 自动化脚本
+│   └── demo_git_security.py            # ✓ 演示脚本
 │
 ├── maxcompute_cli/                     # CLI 版本
 │   ├── config.py                       # ⚠️ 本地配置（不提交）
@@ -169,19 +135,16 @@ test/
 │   ├── verify_all_optimizations.py     # ✓ 验证脚本
 │   ├── auto_fix_optimizations.py       # ✓ 自动修复脚本
 │   ├── OPTIMIZATION_NOTES.md           # ✓ 优化说明
-│   ├── README.md                       # ✓ CLI 使用指南
-│   └── sql/
-│       └── query.sql                   # ✓ SQL 查询文件
+│   └── sql/query.sql                   # ✓ SQL 查询文件
 │
 ├── maxcompute_notebook/                # Notebook 版本
 │   ├── config.py                       # ⚠️ 本地配置（不提交）
 │   ├── config.py.example               # ✓ 配置模板
 │   ├── query.ipynb                     # ✓ Jupyter Notebook
-│   └── sql/
-│       └── query.sql                   # ✓ SQL 查询文件
+│   └── sql/query.sql                   # ✓ SQL 查询文件
 │
 └── ollma查询/                          # AI 查数工具
-    ├── config.py                       # ⚠️ 本地配置（不提交）
+    ├── config.py                       # ️ 本地配置（不提交）
     ├── config.py.example               # ✓ 配置模板
     ├── Untitled-1.ipynb                # ✓ Notebook
     └── requirements.txt                # ✓ 依赖列表
@@ -255,13 +218,17 @@ with instance.open_reader(tunnel=True) as reader:
    git clone https://github.com/sd99886/test.git
    ```
 
-2. **配置环境**
+2. **阅读文档**
    ```bash
-   cd test
-   python git_security_tool.py --init
+   cat git_security/README.md
    ```
 
-3. **设置 AccessKey**
+3. **初始化项目**
+   ```bash
+   python git_security/git_security_tool.py --init
+   ```
+
+4. **设置 AccessKey**
    ```bash
    # CLI 版本
    cp maxcompute_cli/config.py.example maxcompute_cli/config.py
@@ -272,12 +239,12 @@ with instance.open_reader(tunnel=True) as reader:
    # 编辑配置文件，填入真实的 AccessKey
    ```
 
-4. **验证配置**
+5. **验证配置**
    ```bash
-   python git_security_tool.py --check
+   python git_security/git_security_tool.py --check
    ```
 
-5. **开始开发**
+6. **开始开发**
    ```bash
    # CLI 版本
    cd maxcompute_cli && python main.py
@@ -292,18 +259,10 @@ with instance.open_reader(tunnel=True) as reader:
 
 ```bash
 # 1. 检查敏感信息
-python git_security_tool.py --check
+python git_security/git_security_tool.py --check
 
 # 2. 确认通过后提交
-git add -A
-git commit -m "feat: 你的修改描述"
-git push origin main
-```
-
-或使用自动化脚本：
-
-```bash
-python git_security_tool.py --commit "feat: 你的修改描述"
+python git_security/git_security_tool.py --commit "feat: 你的修改描述"
 ```
 
 ---
@@ -318,7 +277,7 @@ remote: error: GH013: Repository rule violations found
 remote: - Push cannot contain secrets
 ```
 
-**解决:** 参见 [GIT_SECURITY_GUIDE.md](GIT_SECURITY_GUIDE.md) 中的"如果已经提交了敏感信息怎么办？"章节
+**解决:** 参见 [git_security/GIT_SECURITY_GUIDE.md](git_security/GIT_SECURITY_GUIDE.md)
 
 ### 问题 2: AttributeError: 'ODPS' object has no attribute 'options'
 
@@ -354,35 +313,35 @@ with instance.open_reader(tunnel=True) as reader:
    - 减少扫描数据量
    - 避免 SELECT *
 
-更多问题请参见 [GIT_SECURITY_GUIDE.md](GIT_SECURITY_GUIDE.md)
+更多问题请参见 [git_security/GIT_SECURITY_GUIDE.md](git_security/GIT_SECURITY_GUIDE.md)
 
 ---
 
-## 📝 更新日志
+##  更新日志
 
 ### v1.0.0 (2026-07-02)
 
--  添加 Instance Tunnel 加速支持
+- ✨ 添加 Instance Tunnel 加速支持
 - ✨ 添加查询耗时监控
-- ✨ 添加 LogView 链接显示
+-  添加 LogView 链接显示
 - ✨ 实现 Git 敏感信息保护机制
 - ✨ 创建自动化验证和修复工具
-- 📚 完善文档和快速参考
+-  完善文档和快速参考
 
 ---
 
-##  贡献指南
+## 🤝 贡献指南
 
 欢迎贡献代码！请遵循以下流程：
 
 1. Fork 本仓库
 2. 创建功能分支 (`git checkout -b feature/AmazingFeature`)
 3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 运行安全检查 (`python git_security_tool.py --check`)
+4. 运行安全检查 (`python git_security/git_security_tool.py --check`)
 5. 推送到分支 (`git push origin feature/AmazingFeature`)
 6. 开启 Pull Request
 
-**重要:** 提交前务必运行 `python git_security_tool.py --check` 确保没有泄露敏感信息！
+**重要:** 提交前务必运行 `python git_security/git_security_tool.py --check` 确保没有泄露敏感信息！
 
 ---
 
@@ -392,15 +351,9 @@ with instance.open_reader(tunnel=True) as reader:
 
 ---
 
-## 📞 联系方式
+##  联系方式
 
 如有问题或建议，请联系项目维护者。
-
----
-
-##  致谢
-
-感谢所有为本项目做出贡献的成员！
 
 ---
 
