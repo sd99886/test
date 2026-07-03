@@ -33,7 +33,85 @@ python app.py
 - **数分管理后台**: http://localhost:5000/admin
 - **接口列表**: http://localhost:5000/api/queries
 
-### 生产环境部署
+---
+
+### 无服务器方案（推荐临时使用）
+
+**场景：** 没有服务器，但需要让外部AI平台（如Manus AI）调用接口
+
+#### 方案1：ngrok 内网穿透（最简单）
+
+1. **安装 ngrok**
+   - 访问 https://ngrok.com/download 下载 Windows 版
+   - 解压后把 `ngrok.exe` 放到任意目录
+
+2. **注册账号获取 token**
+   - 访问 https://ngrok.com 注册（可用GitHub登录）
+   - 获取 authtoken，执行：
+   ```bash
+   ngrok config add-authtoken 你的token
+   ```
+
+3. **启动服务**
+   ```bash
+   # 终端1：启动Flask服务
+   python app.py
+   
+   # 终端2：启动ngrok
+   ngrok http 5000
+   ```
+
+4. **获取公网地址**
+   - ngrok 会显示类似：`https://xxxx-xxx.ngrok-free.app → http://localhost:5000`
+   - 把这个地址给 Manus AI 即可调用
+
+5. **调用示例**
+   ```python
+   import requests
+   
+   # 使用ngrok提供的地址
+   headers = {'X-API-Key': 'cupshe-data-2026'}
+   response = requests.get('https://xxxx-xxx.ngrok-free.app/api/query/sales_report', headers=headers)
+   data = response.json()
+   ```
+
+⚠️ **注意：**
+- 免费版 ngrok 每次重启地址会变
+- 关闭电脑后服务中断
+- 适合临时测试，不适合长期生产
+
+#### 方案2：Cloudflare Tunnel（更稳定）
+
+1. **安装 cloudflared**
+   ```bash
+   # Windows
+   winget install Cloudflare.cloudflared
+   ```
+
+2. **创建隧道**
+   ```bash
+   # 登录
+   cloudflared tunnel login
+   
+   # 创建隧道
+   cloudflared tunnel create my-api-tunnel
+   
+   # 配置路由
+   cloudflared tunnel route dns my-api-tunnel your-domain.com
+   ```
+
+3. **启动隧道**
+   ```bash
+   cloudflared tunnel run --url http://localhost:5000 my-api-tunnel
+   ```
+
+4. **访问**
+   - 通过 `https://your-domain.com/api/query/sales_report` 访问
+   - 更稳定，支持自定义域名
+
+---
+
+### 生产环境部署（有服务器时）
 
 #### 方式1：Gunicorn + Nginx（推荐）
 
