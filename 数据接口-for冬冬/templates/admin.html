@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL 管理后台 - 数据API服务</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f7fa; height: 100vh; display: flex; }
+        
+        /* 左侧列表 */
+        .sidebar {
+            width: 320px; background: #1a1a2e; color: #fff; padding: 20px;
+            display: flex; flex-direction: column; overflow-y: auto;
+        }
+        .sidebar h2 { font-size: 18px; margin-bottom: 20px; color: #e94560; display: flex; align-items: center; gap: 8px; }
+        
+        .new-btn {
+            padding: 12px; border: 2px dashed #444; border-radius: 8px;
+            background: transparent; color: #aaa; cursor: pointer;
+            font-size: 14px; margin-bottom: 16px; transition: all 0.2s;
+        }
+        .new-btn:hover { border-color: #e94560; color: #e94560; }
+        
+        .query-list { flex: 1; overflow-y: auto; }
+        .query-item {
+            padding: 14px; margin-bottom: 8px; border-radius: 8px;
+            background: #16213e; cursor: pointer; transition: all 0.2s;
+        }
+        .query-item:hover { background: #0f3460; }
+        .query-item.active { border-left: 3px solid #e94560; }
+        .query-item .name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .query-item .desc { font-size: 12px; color: #888; }
+        .query-item .url { font-size: 11px; color: #e94560; margin-top: 4px; word-break: break-all; }
+        
+        .refresh-btn {
+            padding: 10px; border: none; border-radius: 6px; background: #e94560;
+            color: #fff; cursor: pointer; font-size: 13px; margin-top: 12px;
+        }
+        .refresh-btn:hover { background: #c73e54; }
+        
+        /* 右侧编辑区 */
+        .editor-area {
+            flex: 1; display: flex; flex-direction: column; background: #fff;
+        }
+        
+        .editor-header {
+            padding: 16px 24px; border-bottom: 1px solid #eee;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .editor-header h3 { font-size: 16px; color: #333; }
+        .save-btn {
+            padding: 10px 24px; border: none; border-radius: 8px;
+            background: #e94560; color: #fff; cursor: pointer;
+            font-size: 14px; font-weight: 600;
+        }
+        .save-btn:hover { background: #c73e54; }
+        .save-btn:disabled { background: #ccc; cursor: not-allowed; }
+        
+        .editor-body { flex: 1; padding: 24px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; }
+        
+        .form-group label {
+            font-size: 13px; color: #666; margin-bottom: 6px; display: block; font-weight: 600;
+        }
+        .form-group input {
+            width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px;
+            font-size: 14px; outline: none;
+        }
+        .form-group input:focus { border-color: #e94560; }
+        
+        .sql-editor {
+            width: 100%; flex: 1; padding: 14px; border: 1px solid #ddd;
+            border-radius: 10px; font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px; line-height: 1.6; resize: none; outline: none;
+            background: #fafafa; color: #333; min-height: 400px;
+        }
+        .sql-editor:focus { border-color: #e94560; background: #fff; }
+        
+        .status-bar {
+            padding: 12px 24px; border-top: 1px solid #eee;
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 13px;
+        }
+        .status-msg { color: #666; }
+        .status-msg.success { color: #4caf50; }
+        .status-msg.error { color: #e94560; }
+        
+        .welcome { text-align: center; padding: 60px 20px; color: #666; }
+        .welcome h2 { font-size: 24px; color: #333; margin-bottom: 12px; }
+        .welcome p { font-size: 14px; line-height: 1.8; }
+    </style>
+</head>
+<body>
+    <!-- 左侧列表 -->
+    <div class="sidebar">
+        <h2> SQL 查询列表</h2>
+        
+        <button class="new-btn" onclick="createNewQuery()">+ 新建查询</button>
+        
+        <div class="query-list" id="queryList">
+            <div style="color:#666; font-size:13px; text-align:center; padding:20px;">加载中...</div>
+        </div>
+        
+        <button class="refresh-btn" onclick="loadQueries()"> 刷新列表</button>
+    </div>
+    
+    <!-- 右侧编辑区 -->
+    <div class="editor-area">
+        <div class="editor-header">
+            <h3 id="editorTitle">选择或新建一个查询</h3>
+            <button class="save-btn" id="saveBtn" onclick="saveQuery()" disabled>保存并发布</button>
+        </div>
+        
+        <div class="editor-body" id="editorBody">
+            <div class="welcome">
+                <h2>欢迎使用 SQL 管理后台</h2>
+                <p>在左侧选择一个已有查询进行编辑，或点击「新建查询」创建新的数据接口</p>
+            </div>
+        </div>
+        
+        <div class="status-bar">
+            <span class="status-msg" id="statusMsg"></span>
+            <span style="color:#999;font-size:12px;">提示：保存后自动生成 API 接口 /api/query/{名称}</span>
+        </div>
+    </div>
+
+    <script>
+        let currentName = null;
+        const defaultBase = window.location.origin;
+        
+        // 加载查询列表
+        async function loadQueries() {
+            const listEl = document.getElementById('queryList');
+            try {
+                const resp = await fetch('/api/queries');
+                const result = await resp.json();
+                
+                if (result.success && result.queries.length > 0) {
+                    listEl.innerHTML = result.queries.map(q => `
+                        <div class="query-item ${currentName === q.name ? 'active' : ''}" onclick="loadQuery('${q.name}')">
+                            <div class="name">${q.name}</div>
+                            <div class="desc">${q.description || '暂无描述'}</div>
+                            <div class="url">${q.api_url}</div>
+                        </div>
+                    `).join('');
+                } else {
+                    listEl.innerHTML = '<div style="color:#666;font-size:13px;text-align:center;padding:20px;">暂无查询</div>';
+                }
+            } catch (e) {
+                listEl.innerHTML = '<div style="color:#e94560;font-size:13px;text-align:center;padding:20px;">加载失败</div>';
+            }
+        }
+        
+        // 加载单个查询
+        async function loadQuery(name) {
+            currentName = name;
+            const editorBody = document.getElementById('editorBody');
+            const editorTitle = document.getElementById('editorTitle');
+            const saveBtn = document.getElementById('saveBtn');
+            
+            editorTitle.textContent = `编辑查询: ${name}`;
+            saveBtn.disabled = false;
+            
+            try {
+                const resp = await fetch(`/api/sql/${name}`);
+                const result = await resp.json();
+                
+                if (result.success) {
+                    editorBody.innerHTML = `
+                        <div class="form-group">
+                            <label>查询名称（不可修改）</label>
+                            <input type="text" value="${name}" readonly />
+                        </div>
+                        <div class="form-group" style="flex:1;display:flex;flex-direction:column;">
+                            <label>SQL 语句</label>
+                            <textarea class="sql-editor" id="sqlEditor">${escapeHtml(result.sql)}</textarea>
+                        </div>
+                    `;
+                    
+                    // 高亮当前项
+                    document.querySelectorAll('.query-item').forEach(item => item.classList.remove('active'));
+                    event.currentTarget.classList.add('active');
+                }
+            } catch (e) {
+                setStatus('加载失败: ' + e.message, 'error');
+            }
+        }
+        
+        // 新建查询
+        function createNewQuery() {
+            currentName = null;
+            const editorBody = document.getElementById('editorBody');
+            const editorTitle = document.getElementById('editorTitle');
+            const saveBtn = document.getElementById('saveBtn');
+            
+            editorTitle.textContent = '新建查询';
+            saveBtn.disabled = false;
+            
+            editorBody.innerHTML = `
+                <div class="form-group">
+                    <label>查询名称（英文，将作为接口名）</label>
+                    <input type="text" id="queryName" placeholder="如：sales_report、inventory_check" />
+                </div>
+                <div class="form-group" style="flex:1;display:flex;flex-direction:column;">
+                    <label>SQL 语句</label>
+                    <textarea class="sql-editor" id="sqlEditor" placeholder="-- 在此编写你的 SQL 查询&#10;SELECT&#10;    字段1,&#10;    字段2,&#10;    SUM(销量) as 总销量&#10;FROM your_table&#10;GROUP BY 字段1, 字段2"></textarea>
+                </div>
+            `;
+            
+            // 取消高亮
+            document.querySelectorAll('.query-item').forEach(item => item.classList.remove('active'));
+        }
+        
+        // 保存查询
+        async function saveQuery() {
+            const saveBtn = document.getElementById('saveBtn');
+            const statusMsg = document.getElementById('statusMsg');
+            
+            let name, sql;
+            
+            if (currentName) {
+                // 编辑模式
+                name = currentName;
+                sql = document.getElementById('sqlEditor').value.trim();
+            } else {
+                // 新建模式
+                name = document.getElementById('queryName').value.trim();
+                sql = document.getElementById('sqlEditor').value.trim();
+            }
+            
+            if (!name) {
+                setStatus('请输入查询名称', 'error');
+                return;
+            }
+            if (!sql) {
+                setStatus('SQL 不能为空', 'error');
+                return;
+            }
+            
+            saveBtn.disabled = true;
+            saveBtn.textContent = '保存中...';
+            setStatus('', '');
+            
+            try {
+                const resp = await fetch('/api/sql/save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: name, sql: sql })
+                });
+                
+                const result = await resp.json();
+                
+                if (result.success) {
+                    setStatus('✓ 保存成功！接口已发布: ' + result.api_url, 'success');
+                    currentName = name;
+                    loadQueries();
+                    setTimeout(() => loadQuery(name), 500);
+                } else {
+                    setStatus('✗ ' + (result.error || '保存失败'), 'error');
+                }
+            } catch (e) {
+                setStatus('✗ 网络错误: ' + e.message, 'error');
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.textContent = '保存并发布';
+            }
+        }
+        
+        function setStatus(msg, type) {
+            const el = document.getElementById('statusMsg');
+            el.textContent = msg;
+            el.className = 'status-msg ' + type;
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // 初始化
+        loadQueries();
+    </script>
+</body>
+</html>

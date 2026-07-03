@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 数据分析助手</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; height: 100vh; display: flex; }
+        
+        /* 左侧面板 */
+        .sidebar {
+            width: 300px; background: #1a1a2e; color: #fff; padding: 20px;
+            display: flex; flex-direction: column; overflow-y: auto;
+        }
+        .sidebar h2 { font-size: 18px; margin-bottom: 16px; color: #e94560; }
+        .sidebar label { font-size: 13px; color: #aaa; margin-bottom: 6px; display: block; }
+        
+        .api-input {
+            width: 100%; padding: 10px 12px; border: 1px solid #333; border-radius: 8px;
+            background: #16213e; color: #fff; font-size: 13px; margin-bottom: 16px;
+            outline: none; transition: border-color 0.2s;
+        }
+        .api-input:focus { border-color: #e94560; }
+        .api-input::placeholder { color: #666; }
+        
+        .query-list { flex: 1; overflow-y: auto; }
+        .query-item {
+            padding: 12px; margin-bottom: 8px; border-radius: 8px;
+            background: #16213e; cursor: pointer; transition: all 0.2s;
+        }
+        .query-item:hover { background: #0f3460; }
+        .query-item.active { border-left: 3px solid #e94560; }
+        .query-item .name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .query-item .desc { font-size: 12px; color: #888; }
+        .query-item .url { font-size: 11px; color: #e94560; margin-top: 4px; word-break: break-all; }
+        
+        .refresh-btn {
+            padding: 8px; border: none; border-radius: 6px; background: #e94560;
+            color: #fff; cursor: pointer; font-size: 13px; margin-top: 12px;
+        }
+        .refresh-btn:hover { background: #c73e54; }
+        
+        .write-sql-btn {
+            padding: 10px; border: 2px dashed #444; border-radius: 8px;
+            background: transparent; color: #aaa; cursor: pointer;
+            font-size: 13px; margin-bottom: 12px; transition: all 0.2s;
+        }
+        .write-sql-btn:hover { border-color: #e94560; color: #e94560; }
+        
+        /* SQL 弹窗 */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center;
+        }
+        .modal-overlay.show { display: flex; }
+        
+        .modal {
+            background: #fff; border-radius: 16px; width: 700px; max-width: 90vw;
+            max-height: 85vh; display: flex; flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3); animation: modalIn 0.25s ease;
+        }
+        @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        
+        .modal-header {
+            padding: 20px 24px; border-bottom: 1px solid #eee;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .modal-header h3 { font-size: 18px; color: #333; }
+        .modal-close {
+            width: 32px; height: 32px; border: none; background: #f0f0f0;
+            border-radius: 50%; cursor: pointer; font-size: 18px; color: #666;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .modal-close:hover { background: #e94560; color: #fff; }
+        
+        .modal-body { padding: 24px; flex: 1; overflow-y: auto; }
+        
+        .modal-body label {
+            font-size: 13px; color: #666; margin-bottom: 6px; display: block; font-weight: 600;
+        }
+        .modal-body .name-input {
+            width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px;
+            font-size: 14px; margin-bottom: 16px; outline: none;
+        }
+        .modal-body .name-input:focus { border-color: #e94560; }
+        
+        .modal-body .sql-editor {
+            width: 100%; height: 300px; padding: 14px; border: 1px solid #ddd;
+            border-radius: 10px; font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px; line-height: 1.6; resize: vertical; outline: none;
+            background: #fafafa; color: #333;
+        }
+        .modal-body .sql-editor:focus { border-color: #e94560; background: #fff; }
+        
+        .modal-body .hint {
+            font-size: 12px; color: #999; margin-top: 8px;
+        }
+        
+        .modal-footer {
+            padding: 16px 24px; border-top: 1px solid #eee;
+            display: flex; justify-content: flex-end; gap: 12px;
+        }
+        .modal-footer .btn {
+            padding: 10px 24px; border: none; border-radius: 8px;
+            font-size: 14px; cursor: pointer; font-weight: 600;
+        }
+        .modal-footer .btn-cancel { background: #f0f0f0; color: #666; }
+        .modal-footer .btn-cancel:hover { background: #e0e0e0; }
+        .modal-footer .btn-save { background: #e94560; color: #fff; }
+        .modal-footer .btn-save:hover { background: #c73e54; }
+        .modal-footer .btn-save:disabled { background: #ccc; cursor: not-allowed; }
+        .modal-footer .save-msg { font-size: 13px; color: #4caf50; align-self: center; margin-right: auto; }
+        
+        /* 右侧聊天区 */
+        .chat-area {
+            flex: 1; display: flex; flex-direction: column; background: #fff;
+        }
+        
+        .chat-header {
+            padding: 16px 24px; border-bottom: 1px solid #eee;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .chat-header h3 { font-size: 16px; color: #333; }
+        .chat-header .status { font-size: 12px; color: #999; }
+        
+        .messages {
+            flex: 1; overflow-y: auto; padding: 24px;
+        }
+        
+        .message {
+            margin-bottom: 20px; display: flex; gap: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .message.user { flex-direction: row-reverse; }
+        .message .avatar {
+            width: 36px; height: 36px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; flex-shrink: 0;
+        }
+        .message.user .avatar { background: #e94560; color: #fff; }
+        .message.assistant .avatar { background: #1a1a2e; color: #fff; }
+        
+        .message .bubble {
+            max-width: 70%; padding: 12px 16px; border-radius: 12px;
+            font-size: 14px; line-height: 1.6; white-space: pre-wrap;
+        }
+        .message.user .bubble { background: #e94560; color: #fff; border-top-right-radius: 4px; }
+        .message.assistant .bubble { background: #f0f0f0; color: #333; border-top-left-radius: 4px; }
+        
+        .message .data-tag {
+            font-size: 11px; color: #888; margin-top: 6px;
+            padding: 4px 8px; background: #f8f8f8; border-radius: 4px;
+        }
+        
+        .typing-indicator { display: none; padding: 12px 16px; }
+        .typing-indicator.show { display: flex; gap: 4px; align-items: center; }
+        .typing-dot {
+            width: 8px; height: 8px; border-radius: 50%; background: #999;
+            animation: typing 1.4s infinite;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-8px); } }
+        
+        /* 输入区 */
+        .input-area {
+            padding: 16px 24px; border-top: 1px solid #eee;
+            display: flex; gap: 12px; align-items: flex-end;
+        }
+        .input-area textarea {
+            flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 10px;
+            font-size: 14px; resize: none; outline: none; min-height: 44px;
+            max-height: 120px; font-family: inherit; line-height: 1.5;
+        }
+        .input-area textarea:focus { border-color: #e94560; }
+        .send-btn {
+            padding: 12px 20px; border: none; border-radius: 10px;
+            background: #e94560; color: #fff; cursor: pointer;
+            font-size: 14px; font-weight: 600; white-space: nowrap;
+        }
+        .send-btn:hover { background: #c73e54; }
+        .send-btn:disabled { background: #ccc; cursor: not-allowed; }
+        
+        /* 欢迎页 */
+        .welcome { text-align: center; padding: 60px 20px; color: #666; }
+        .welcome h2 { font-size: 24px; color: #333; margin-bottom: 12px; }
+        .welcome p { font-size: 14px; line-height: 1.8; }
+        .welcome .steps { text-align: left; max-width: 400px; margin: 24px auto 0; }
+        .welcome .step { padding: 12px; margin-bottom: 8px; background: #f8f8f8; border-radius: 8px; }
+        .welcome .step-num { color: #e94560; font-weight: 700; margin-right: 8px; }
+    </style>
+</head>
+<body>
+    <!-- 左侧面板 -->
+    <div class="sidebar">
+        <h2>📊 数据接口</h2>
+        
+        <label>数据接口地址</label>
+        <input type="text" class="api-input" id="apiUrl" 
+               placeholder="输入接口地址，如 http://localhost:5000/api/query/query" />
+        
+        <label>可用数据接口</label>
+        <div class="query-list" id="queryList">
+            <div style="color:#666; font-size:13px; text-align:center; padding:20px;">
+                加载中...
+            </div>
+        </div>
+        
+        <button class="write-sql-btn" onclick="openSqlModal()">+ 编写新 SQL</button>
+        <button class="refresh-btn" onclick="loadQueries()">🔄 刷新接口列表</button>
+    </div>
+    
+    <!-- SQL 编写弹窗 -->
+    <div class="modal-overlay" id="sqlModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>📝 编写 SQL 查询</h3>
+                <button class="modal-close" onclick="closeSqlModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <label>查询名称（英文，将作为接口名）</label>
+                <input type="text" class="name-input" id="sqlName" placeholder="如：sales_report、inventory_check" />
+                
+                <label>SQL 语句</label>
+                <textarea class="sql-editor" id="sqlEditor" placeholder="-- 在此编写你的 SQL 查询&#10;SELECT&#10;    字段1,&#10;    字段2,&#10;    SUM(销量) as 总销量&#10;FROM your_table&#10;GROUP BY 字段1, 字段2"></textarea>
+                <div class="hint">💡 保存后自动生成接口地址：/api/query/{查询名称}</div>
+            </div>
+            <div class="modal-footer">
+                <span class="save-msg" id="saveMsg"></span>
+                <button class="btn btn-cancel" onclick="closeSqlModal()">取消</button>
+                <button class="btn btn-save" id="saveSqlBtn" onclick="saveSql()">保存并发布</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 右侧聊天区 -->
+    <div class="chat-area">
+        <div class="chat-header">
+            <h3>🤖 AI 数据分析助手</h3>
+            <span class="status" id="statusText">就绪</span>
+        </div>
+        
+        <div class="messages" id="messages">
+            <div class="welcome">
+                <h2>欢迎使用 AI 数据分析</h2>
+                <p>输入数据接口地址，AI 将自动获取数据并为你分析</p>
+                <div class="steps">
+                    <div class="step"><span class="step-num">1</span>在左侧输入数据接口地址，或选择一个已有接口</div>
+                    <div class="step"><span class="step-num">2</span>在下方输入你的分析问题</div>
+                    <div class="step"><span class="step-num">3</span>AI 自动获取数据并给出分析结论</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <span style="margin-left:8px; color:#999; font-size:13px;">AI 正在分析数据...</span>
+        </div>
+        
+        <div class="input-area">
+            <textarea id="userInput" placeholder="输入你的分析问题，如：帮我分析各品类的销售趋势" 
+                      rows="1" onkeydown="handleKey(event)"></textarea>
+            <button class="send-btn" id="sendBtn" onclick="sendMessage()">发送</button>
+        </div>
+    </div>
+
+    <script>
+        let chatHistory = [];
+        
+        // 自动检测当前页面地址作为默认API
+        const defaultBase = window.location.origin;
+        
+        // 检查是否通过 file:// 协议打开（直接双击HTML）
+        if (defaultBase === 'null' || defaultBase.startsWith('file://')) {
+            alert('⚠️ 请通过 http://localhost:5000 访问本页面\n\n请先启动服务：python app.py');
+        }
+        
+        document.getElementById('apiUrl').value = defaultBase + '/api/query/query';
+        
+        // 加载可用接口列表
+        async function loadQueries() {
+            const listEl = document.getElementById('queryList');
+            try {
+                const resp = await fetch('/api/queries');
+                const result = await resp.json();
+                
+                if (result.success && result.queries.length > 0) {
+                    listEl.innerHTML = result.queries.map(q => `
+                        <div class="query-item" onclick="selectQuery('${q.api_url}', this)">
+                            <div style="display:flex;justify-content:space-between;align-items:center">
+                                <div class="name">${q.name}</div>
+                                <span onclick="event.stopPropagation();openSqlModal('${q.name}')" style="font-size:11px;color:#888;cursor:pointer;padding:2px 6px;border-radius:4px;background:#0a1628;">编辑</span>
+                            </div>
+                            <div class="desc">${q.description || '暂无描述'}</div>
+                            <div class="url">${q.api_url}</div>
+                        </div>
+                    `).join('');
+                } else {
+                    listEl.innerHTML = '<div style="color:#666;font-size:13px;text-align:center;padding:20px;">暂无可用接口</div>';
+                }
+            } catch (e) {
+                console.error('加载接口列表失败:', e);
+                listEl.innerHTML = '<div style="color:#e94560;font-size:13px;text-align:center;padding:20px;">加载失败<br/><span style="font-size:11px;color:#888">请确认服务已启动并刷新页面(Ctrl+F5)</span></div>';
+            }
+        }
+        
+        function selectQuery(apiUrl, el) {
+            // 拼接完整URL
+            const fullUrl = apiUrl.startsWith('http') ? apiUrl : defaultBase + apiUrl;
+            document.getElementById('apiUrl').value = fullUrl;
+            
+            // 高亮选中
+            document.querySelectorAll('.query-item').forEach(item => item.classList.remove('active'));
+            el.classList.add('active');
+        }
+        
+        // 发送消息
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            const apiUrl = document.getElementById('apiUrl').value.trim();
+            const sendBtn = document.getElementById('sendBtn');
+            const typing = document.getElementById('typingIndicator');
+            const statusText = document.getElementById('statusText');
+            
+            // 清除欢迎页
+            const welcome = document.querySelector('.welcome');
+            if (welcome) welcome.remove();
+            
+            // 显示用户消息
+            addMessage('user', message);
+            input.value = '';
+            input.style.height = 'auto';
+            
+            // 显示加载状态
+            sendBtn.disabled = true;
+            typing.classList.add('show');
+            statusText.textContent = 'AI 分析中...';
+            
+            try {
+                const resp = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: message,
+                        api_url: apiUrl,
+                        history: chatHistory
+                    })
+                });
+                
+                const result = await resp.json();
+                
+                if (result.success) {
+                    let replyContent = result.reply;
+                    // 如果有数据上下文，附加简要提示
+                    let dataTag = '';
+                    if (result.data_context) {
+                        dataTag = result.data_context;
+                    }
+                    addMessage('assistant', replyContent, dataTag);
+                    chatHistory.push(
+                        { role: 'user', content: message },
+                        { role: 'assistant', content: replyContent }
+                    );
+                } else {
+                    addMessage('assistant', '❌ ' + (result.error || '请求失败') + 
+                        (result.hint ? '\n\n💡 ' + result.hint : ''));
+                }
+            } catch (e) {
+                addMessage('assistant', '❌ 网络错误：' + e.message);
+            } finally {
+                sendBtn.disabled = false;
+                typing.classList.remove('show');
+                statusText.textContent = '就绪';
+            }
+        }
+        
+        function addMessage(role, content, dataTag) {
+            const messagesEl = document.getElementById('messages');
+            const avatar = role === 'user' ? '👤' : '🤖';
+            
+            let dataTagHtml = '';
+            if (dataTag) {
+                dataTagHtml = `<div class="data-tag">📊 ${dataTag.substring(0, 100)}...</div>`;
+            }
+            
+            const html = `
+                <div class="message ${role}">
+                    <div class="avatar">${avatar}</div>
+                    <div>
+                        <div class="bubble">${escapeHtml(content)}</div>
+                        ${dataTagHtml}
+                    </div>
+                </div>
+            `;
+            messagesEl.insertAdjacentHTML('beforeend', html);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function handleKey(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+            // 自动调整高度
+            const textarea = e.target;
+            setTimeout(() => {
+                textarea.style.height = 'auto';
+                textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+            }, 0);
+        }
+        
+        // ========== SQL 弹窗功能 ==========
+        function openSqlModal(name) {
+            const modal = document.getElementById('sqlModal');
+            const nameInput = document.getElementById('sqlName');
+            const editor = document.getElementById('sqlEditor');
+            const saveMsg = document.getElementById('saveMsg');
+            
+            saveMsg.textContent = '';
+            
+            if (name) {
+                // 编辑模式：加载已有SQL
+                nameInput.value = name;
+                nameInput.readOnly = true;
+                fetch(`/api/sql/${name}`)
+                    .then(r => r.json())
+                    .then(data => {
+                        if (data.success) {
+                            editor.value = data.sql;
+                        }
+                    });
+            } else {
+                // 新建模式
+                nameInput.value = '';
+                nameInput.readOnly = false;
+                editor.value = '';
+            }
+            
+            modal.classList.add('show');
+            setTimeout(() => editor.focus(), 100);
+        }
+        
+        function closeSqlModal() {
+            document.getElementById('sqlModal').classList.remove('show');
+        }
+        
+        async function saveSql() {
+            const name = document.getElementById('sqlName').value.trim();
+            const sql = document.getElementById('sqlEditor').value.trim();
+            const saveBtn = document.getElementById('saveSqlBtn');
+            const saveMsg = document.getElementById('saveMsg');
+            
+            if (!name) {
+                saveMsg.style.color = '#e94560';
+                saveMsg.textContent = '请输入查询名称';
+                return;
+            }
+            if (!sql) {
+                saveMsg.style.color = '#e94560';
+                saveMsg.textContent = 'SQL 不能为空';
+                return;
+            }
+            
+            saveBtn.disabled = true;
+            saveBtn.textContent = '保存中...';
+            saveMsg.style.color = '#999';
+            saveMsg.textContent = '';
+            
+            try {
+                const resp = await fetch('/api/sql/save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: name, sql: sql })
+                });
+                
+                const result = await resp.json();
+                
+                if (result.success) {
+                    saveMsg.style.color = '#4caf50';
+                    saveMsg.textContent = '✓ 保存成功！接口已发布';
+                    
+                    // 自动填入接口地址
+                    const fullUrl = defaultBase + result.api_url;
+                    document.getElementById('apiUrl').value = fullUrl;
+                    
+                    // 刷新接口列表
+                    loadQueries();
+                    
+                    // 1秒后关闭弹窗
+                    setTimeout(() => closeSqlModal(), 1000);
+                } else {
+                    saveMsg.style.color = '#e94560';
+                    saveMsg.textContent = '✗ ' + (result.error || '保存失败');
+                }
+            } catch (e) {
+                saveMsg.style.color = '#e94560';
+                saveMsg.textContent = '✗ 网络错误：' + e.message;
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.textContent = '保存并发布';
+            }
+        }
+        
+        // 点击遮罩层关闭弹窗
+        document.getElementById('sqlModal').addEventListener('click', function(e) {
+            if (e.target === this) closeSqlModal();
+        });
+        
+        // 初始化
+        loadQueries();
+    </script>
+</body>
+</html>

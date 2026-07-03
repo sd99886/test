@@ -1,0 +1,64 @@
+# Nginx 反向代理配置 - 数据API服务
+# 将此文件复制到 /etc/nginx/conf.d/data-api.conf
+
+server {
+    listen 80;
+    server_name data-api.yourdomain.com;  # 修改为你的域名或服务器IP
+
+    # 日志配置
+    access_log /var/log/nginx/data-api-access.log;
+    error_log /var/log/nginx/data-api-error.log;
+
+    # 请求体大小限制（根据实际数据量调整）
+    client_max_body_size 10M;
+
+    # 超时设置
+    proxy_connect_timeout 60s;
+    proxy_send_timeout 120s;
+    proxy_read_timeout 120s;
+
+    # API 接口代理
+    location /api/ {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        
+        # CORS 头（如果需要跨域访问）
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+        add_header Access-Control-Allow-Headers 'Content-Type, Authorization';
+    }
+
+    # 前端页面代理（可选，如果有独立前端）
+    location / {
+        root /opt/data-api/templates;
+        index index.html;
+        try_files $uri $uri/ =404;
+    }
+
+    # 健康检查端点
+    location /health {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_set_header Host $host;
+    }
+}
+
+# HTTPS 配置（推荐生产环境使用）
+# server {
+#     listen 443 ssl http2;
+#     server_name data-api.yourdomain.com;
+#     
+#     ssl_certificate /etc/letsencrypt/live/data-api.yourdomain.com/fullchain.pem;
+#     ssl_certificate_key /etc/letsencrypt/live/data-api.yourdomain.com/privkey.pem;
+#     
+#     # SSL 配置
+#     ssl_protocols TLSv1.2 TLSv1.3;
+#     ssl_ciphers HIGH:!aNULL:!MD5;
+#     ssl_prefer_server_ciphers on;
+#     ssl_session_cache shared:SSL:10m;
+#     ssl_session_timeout 1d;
+#     
+#     # 其他配置同上...
+# }

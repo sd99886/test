@@ -1,0 +1,29 @@
+[Unit]
+Description=Data API Service - MaxCompute Query Interface
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/opt/data-api
+ExecStart=/usr/bin/gunicorn -c gunicorn_config.py app:app
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+
+# 环境变量（可选，用于覆盖config.py中的配置）
+# Environment="ODPS_ACCESS_ID=xxx"
+# Environment="ODPS_ACCESS_KEY=xxx"
+
+# 重启策略
+Restart=on-failure
+RestartSec=10
+
+# 资源限制
+LimitNOFILE=65535
+
+# 日志
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

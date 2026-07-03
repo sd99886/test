@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据API服务 - 接口文档</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f7fa; line-height: 1.6; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        
+        h1 { color: #1a1a2e; margin-bottom: 8px; font-size: 32px; }
+        .subtitle { color: #666; margin-bottom: 32px; font-size: 16px; }
+        
+        .section { background: #fff; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .section h2 { color: #1a1a2e; font-size: 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .section h3 { color: #333; font-size: 16px; margin: 16px 0 8px; }
+        
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .badge-get { background: #e3f2fd; color: #1976d2; }
+        .badge-post { background: #fce4ec; color: #c2185b; }
+        
+        .endpoint { background: #f8f9fa; padding: 16px; border-radius: 8px; margin: 12px 0; font-family: 'Consolas', monospace; font-size: 14px; }
+        .endpoint .method { font-weight: 700; margin-right: 8px; }
+        .endpoint .url { color: #1976d2; }
+        
+        .code-block { background: #1a1a2e; color: #e0e0e0; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; font-family: 'Consolas', monospace; font-size: 13px; line-height: 1.8; }
+        .code-block .comment { color: #666; }
+        .code-block .key { color: #ff79c6; }
+        .code-block .string { color: #f1fa8c; }
+        .code-block .number { color: #bd93f9; }
+        
+        .query-list { display: grid; gap: 12px; margin-top: 16px; }
+        .query-item { border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; transition: all 0.2s; }
+        .query-item:hover { border-color: #1976d2; box-shadow: 0 2px 8px rgba(25,118,210,0.1); }
+        .query-item .name { font-weight: 600; color: #1a1a2e; font-size: 15px; margin-bottom: 4px; }
+        .query-item .desc { color: #666; font-size: 13px; margin-bottom: 8px; }
+        .query-item .url { color: #1976d2; font-size: 12px; font-family: monospace; word-break: break-all; }
+        .query-item .copy-btn { float: right; padding: 4px 12px; background: #1976d2; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; }
+        .query-item .copy-btn:hover { background: #1565c0; }
+        
+        .admin-link { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; background: #e94560; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; margin-top: 16px; }
+        .admin-link:hover { background: #c73e54; }
+        
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; border-radius: 4px; margin: 16px 0; font-size: 14px; color: #856404; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background: #f5f5f5; font-weight: 600; color: #333; }
+        td { color: #666; font-size: 14px; }
+        
+        .loading { text-align: center; padding: 40px; color: #999; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 数据API服务</h1>
+        <p class="subtitle">供外部AI平台调用的MaxCompute数据查询接口</p>
+        
+        <!-- 快速开始 -->
+        <div class="section">
+            <h2>🚀 快速开始</h2>
+            <p>本服务提供REST API接口，业务方AI平台可通过HTTP请求获取MaxCompute数据。</p>
+            
+            <div class="note">
+                💡 <strong>提示：</strong>数分人员可在 <a href="/admin" style="color:#e94560;font-weight:600;">管理后台</a> 编写和管理SQL查询
+            </div>
+            
+            <h3>调用示例（Python）</h3>
+            <div class="code-block">
+<span class="comment"># 安装依赖</span>
+pip install requests
+
+<span class="comment"># 调用接口</span>
+<span class="key">import</span> requests
+
+response = requests.get(<span class="string">'http://your-server.com/api/query/sales_report'</span>)
+data = response.json()
+
+<span class="comment"># 处理返回数据</span>
+<span class="key">if</span> data[<span class="string">'success'</span>]:
+    records = data[<span class="string">'data'</span>]  <span class="comment"># 数据列表</span>
+    columns = data[<span class="string">'columns'</span>]  <span class="comment"># 字段名</span>
+    row_count = data[<span class="string">'row_count'</span>]  <span class="comment"># 行数</span>
+    print(f<span class="string">"共 {row_count} 行数据"</span>)
+            </div>
+        </div>
+        
+        <!-- 可用接口 -->
+        <div class="section">
+            <h2>📋 可用数据接口</h2>
+            <div id="queryList" class="query-list">
+                <div class="loading">加载中...</div>
+            </div>
+        </div>
+        
+        <!-- API参考 -->
+        <div class="section">
+            <h2>📖 API 参考</h2>
+            
+            <h3><span class="badge badge-get">GET</span> /api/queries</h3>
+            <p>列出所有可用的数据接口</p>
+            <div class="endpoint">
+                <span class="method">GET</span>
+                <span class="url">/api/queries</span>
+            </div>
+            
+            <h3><span class="badge badge-get">GET</span> /api/query/{name}</h3>
+            <p>执行指定SQL查询并返回数据</p>
+            <div class="endpoint">
+                <span class="method">GET</span>
+                <span class="url">/api/query/{name}?limit=100</span>
+            </div>
+            <table>
+                <tr><th>参数</th><th>类型</th><th>说明</th></tr>
+                <tr><td>limit</td><td>整数</td><td>最大返回行数（可选，默认1000）</td></tr>
+            </table>
+            
+            <h3><span class="badge badge-post">POST</span> /api/query</h3>
+            <p>执行自定义SQL（临时测试用）</p>
+            <div class="endpoint">
+                <span class="method">POST</span>
+                <span class="url">/api/query</span>
+            </div>
+            <p>请求体：</p>
+            <div class="code-block">
+{
+    <span class="key">"sql"</span>: <span class="string">"SELECT * FROM table LIMIT 10"</span>,
+    <span class="key">"limit"</span>: <span class="number">100</span>
+}
+            </div>
+        </div>
+        
+        <!-- 响应格式 -->
+        <div class="section">
+            <h2> 响应格式</h2>
+            <div class="code-block">
+{
+    <span class="key">"success"</span>: <span class="string">true</span>,
+    <span class="key">"data"</span>: [
+        {<span class="key">"字段1"</span>: <span class="string">"值1"</span>, <span class="key">"字段2"</span>: <span class="string">"值2"</span>},
+        {<span class="key">"字段1"</span>: <span class="string">"值3"</span>, <span class="key">"字段2"</span>: <span class="string">"值4"</span>}
+    ],
+    <span class="key">"columns"</span>: [<span class="string">"字段1"</span>, <span class="string">"字段2"</span>],
+    <span class="key">"row_count"</span>: <span class="number">100</span>,
+    <span class="key">"exec_time"</span>: <span class="number">5.23</span>,
+    <span class="key">"query_time"</span>: <span class="string">"2026-07-03 16:30:00"</span>
+}
+            </div>
+        </div>
+        
+        <!-- 错误处理 -->
+        <div class="section">
+            <h2> 错误处理</h2>
+            <div class="code-block">
+{
+    <span class="key">"success"</span>: <span class="string">false</span>,
+    <span class="key">"error"</span>: <span class="string">"错误信息"</span>
+}
+            </div>
+            <table>
+                <tr><th>状态码</th><th>说明</th></tr>
+                <tr><td>200</td><td>成功</td></tr>
+                <tr><td>404</td><td>查询不存在</td></tr>
+                <tr><td>500</td><td>服务器错误</td></tr>
+            </table>
+        </div>
+        
+        <!-- 管理后台入口 -->
+        <div class="section" style="text-align:center;">
+            <h2> 数分管理后台</h2>
+            <p style="margin-bottom:16px;color:#666;">数分人员可在此编写、编辑SQL查询</p>
+            <a href="/admin" class="admin-link">进入管理后台 →</a>
+        </div>
+    </div>
+
+    <script>
+        // 加载接口列表
+        async function loadQueries() {
+            const listEl = document.getElementById('queryList');
+            try {
+                const resp = await fetch('/api/queries');
+                const result = await resp.json();
+                
+                if (result.success && result.queries.length > 0) {
+                    listEl.innerHTML = result.queries.map(q => `
+                        <div class="query-item">
+                            <button class="copy-btn" onclick="copyUrl('${q.full_url}')">复制URL</button>
+                            <div class="name">${q.name}</div>
+                            <div class="desc">${q.description}</div>
+                            <div class="url">${q.full_url}</div>
+                        </div>
+                    `).join('');
+                } else {
+                    listEl.innerHTML = '<div style="text-align:center;padding:20px;color:#999;">暂无可用接口</div>';
+                }
+            } catch (e) {
+                listEl.innerHTML = '<div style="text-align:center;padding:20px;color:#e94560;">加载失败，请确认服务已启动</div>';
+            }
+        }
+        
+        function copyUrl(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                alert('✓ URL已复制到剪贴板');
+            });
+        }
+        
+        // 初始化
+        loadQueries();
+    </script>
+</body>
+</html>
