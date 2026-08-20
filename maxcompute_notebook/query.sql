@@ -2,170 +2,175 @@
 -- 在此文件中编写你的 SQL 语句
 -- 支持多行 SQL，使用分号分隔多条语句
 
-WITH shangjia_skc_us_info AS 
+with skc_with_combination_commonly_used_dim AS -- dws_prod_skc_with_combination_label_di
 (
-    SELECT  a.skc
-            ,a.first_published_at
-            ,rate -- 改动11，取消抓修改了首次商家时间的逻辑，会影响到首次商家时间跨月和不跨月的那个逻辑；首次上架价格仅采用美国站的首次上架价格
-            -- ,if(a.first_published_at != b.first_published_at,b.first_published_at,a.first_published_at) first_published_at
-            ,b.first_price first_price_us
-            ,b.first_price * rate first_price_rmb
-    FROM    (
-                SELECT  skc
-                        ,first_published_at
-                FROM    cupshe_bigdata_cdm.dws_prod_skc_with_combination_label_di
-                WHERE   pt = MAX_PT('cupshe_bigdata_cdm.dws_prod_skc_with_combination_label_di')
-                UNION
-                SELECT  skc
-                        ,first_published_at
-                FROM    cupshe_bigdata_cdm.dws_prod_skc_label_di
-                WHERE   pt = MAX_PT('cupshe_bigdata_cdm.dws_prod_skc_label_di')
-                AND     skc NOT IN (
-                            -- 存在单品skc在两个维度表有不同状态，优先取组合品的skc，缺少再用单品递补
-                            SELECT  skc
-                            FROM    cupshe_bigdata_cdm.dws_prod_skc_with_combination_label_di
-                            WHERE   pt = MAX_PT('cupshe_bigdata_cdm.dws_prod_skc_with_combination_label_di')
-                        ) 
-            ) a
-    LEFT JOIN    -- 改动11，取消抓修改了首次商家时间的逻辑，会影响到首次商家时间跨月和不跨月的那个逻辑；首次上架价格仅采用美国站的首次上架价格
-        (
-                    -- 改动7，增加首次上架价格，按照美国站思路，首次上架时间更新调整
-                    SELECT  skc
-                            ,IF(SUBSTR(first_published_us,1,7) = SUBSTR(first_published_dtc,1,7),first_published_us,LEAST(first_published_us,first_published_dtc)) first_published_at -- 如果没有美国站上架时间，就用DTC最早上架日期对应的价格
-                            ,IF(first_price_us = 99999,first_price_dtc,first_price_us) first_price
-                    FROM    (
-                                -- 全站
-                                SELECT  skc
-                                        ,MIN(min_published_at) first_published_dtc
-                                        ,MIN(IF(a.shop_id = 1,min_published_at,'9999-99-99')) first_published_us
-                                        ,MIN_BY(first_price * ex_rate,min_published_at) first_price_dtc -- DTC最早上架日期对应的价格
-                                        ,MIN(IF(a.shop_id = 1,first_price * ex_rate,99999)) first_price_us -- 美国站的最早上架价格
-                                FROM    cupshe_bigdata_cdm.dwd_prod_shopify_product_history_di a
-                                LEFT JOIN CUPSHE_BIGDATA_CDM.dim_pub_fiscal_site_rate b
-                                ON      a.shop_id = b.shop_id
-                                AND     a.min_published_at = b.date_str
-                                WHERE   pt = MAX_PT('cupshe_bigdata_cdm.dwd_prod_shopify_product_history_di')
-                                GROUP BY skc
-                            ) 
-                ) b
-    ON      a.skc = b.skc
-    LEFT JOIN   (
-                    SELECT  fmonth_str
-                            ,cur_code
-                            ,base_cur_code
-                            ,rate
-                    FROM    cupshe_bigdata_cdm.dim_pub_full_cur_rate
-                    WHERE   `type` = 2 -- 人民币
-                    AND     cur_code = 'USD'
-                ) cur_rate
-    ON      cur_rate.fmonth_str = SUBSTR(b.first_published_at,1,7)
+    SELECT  -- 组合品维表和单品维表部分逻辑有新旧之分，但分维度GMV受单品转组合品or组合品转单品的情况影响，因此采用优先组合品维度，组合品skc缺少采用单品维度做递补
+        b.skc
+        ,b.cp
+        ,b.spu
+        ,time_line_type timeline类型
+        ,big_category 大类别
+        ,first_category 一级品类
+        ,second_category 二级品类
+        ,third_category 三级品类
+        ,business_group_name 业务部门
+        ,group_name 组别
+        ,首复色
+        ,designer_name 设计师名
+        ,image_src 图片链接
+        ,sample_oss_url 样衣图片链接
+        ,频道_tag
+        ,scene_tag 原始场景tag
+        ,fixed_scene_tag 场景tag
+        ,user_tag 人群画像tag
+        ,color1_tag 颜色1
+        ,color2_tag 颜色2
+        ,color3_tag 颜色3
+        ,channels 渠道
+        ,popular_type 畅滞销类型
+        ,first_published_at 首次上架时间
+        ,风格tag
+        ,图案tag
+        ,纯色印花tag
+    FROM 
+    (
+        select  -- 存在组合品转单品or单品转组合品的情形，此时，最新pt的组合品or单品维度表，就会确实skc,因此需要分开取维后UNION
+            skc
+            ,time_line_type 
+            ,big_category
+            ,first_category
+            ,second_category
+            ,third_category
+            ,business_group_name
+            ,group_name
+            ,case  
+                when first_color = 1 then '首色'
+                when first_color = 0 then '复色'
+            end as 首复色
+            ,designer_name
+            ,image_src
+            ,sample_oss_url
+            ,case 
+                when tab_tag = 'Tab-Vacation' or  tab_tag = 'Tab-Everyday|Tab-Vacation' or tab_tag is null then  'Tab-Vacation' 
+                else tab_tag
+            end as 频道_tag
+            ,scene_tag
+            ,fixed_scene_tag
+            ,user_tag
+            ,color1_tag
+            ,color2_tag
+            ,color3_tag
+            ,channels
+            ,popular_type
+            ,first_published_at
+            ,concat_ws('|',SORT_ARRAY(split(style_tag,"\\|"))) 风格tag
+            ,concat_ws('|',SORT_ARRAY(split(pattern_tag,"\\|"))) 图案tag
+            ,concat_ws('|',SORT_ARRAY(split(solid_print_tag,"\\|"))) 纯色印花tag
+        FROM    cupshe_bigdata_cdm.dws_prod_skc_label_di
+        WHERE 
+            pt = MAX_PT('cupshe_bigdata_cdm.dws_prod_skc_label_di')
+            and skc not in ( -- 存在单品skc在两个维度表有不同状态，优先取组合品的skc，缺少再用单品递补
+                SELECT 
+                    skc
+                FROM cupshe_bigdata_cdm.dws_prod_skc_with_combination_label_di 
+                where
+                    pt = MAX_PT('cupshe_bigdata_cdm.dws_prod_skc_with_combination_label_di')
+            )
+        UNION
+        SELECT 
+            skc
+            ,time_line_type
+            ,big_category
+            ,first_category
+            ,second_category
+            ,third_category
+            ,business_group_name
+            ,group_name
+            ,case  
+                when first_color = 1 then '首色'
+                when first_color = 0 then '复色'
+            end as 首复色
+            ,designer_name
+            ,image_src
+            ,sample_oss_url
+            ,case 
+                when tab_tag = 'Tab-Vacation' or  tab_tag = 'Tab-Everyday|Tab-Vacation' or tab_tag is null then  'Tab-Vacation' 
+                else tab_tag
+            end as 频道_tag
+            ,scene_tag
+            ,fixed_scene_tag
+            ,user_tag
+            ,color1_tag
+            ,color2_tag
+            ,color3_tag
+            ,channels
+            ,popular_type
+            ,first_published_at
+            ,concat_ws('|',SORT_ARRAY(split(style_tag,"\\|"))) 风格tag
+            ,concat_ws('|',SORT_ARRAY(split(pattern_tag,"\\|"))) 图案tag
+            ,concat_ws('|',SORT_ARRAY(split(solid_print_tag,"\\|"))) 纯色印花tag
+        FROM cupshe_bigdata_cdm.dws_prod_skc_with_combination_label_di 
+        where
+            pt = MAX_PT('cupshe_bigdata_cdm.dws_prod_skc_with_combination_label_di')
+    ) a
+    left JOIN 
+    (
+        select
+            distinct 
+                skc
+                ,cp
+                ,spu
+        from cupshe_bigdata_cdm.dim_pub_sku_category
+    ) b 
+    on a.skc = b.skc
+
 )
-,sale_info AS 
-(
-    SELECT  skc
-            ,sku
-            ,subsite_id
-            ,SUBSTR(buy_time,1,10) AS date_str
-            ,CAST(SUM(quantity) AS BIGINT) AS sale_quantity
-            ,SUM(sku_org_money_us) AS sale_amount_us
-    FROM    cupshe_bigdata_cdm.dwd_trd_order_detail_combination_df
-    GROUP BY skc
-             ,subsite_id
-             ,subsite_name
-             ,sku
-             ,SUBSTR(buy_time,1,10)
-)
-,sku_is_online AS 
-(
-    SELECT  CONCAT(SUBSTR(pt,1,4),'-',SUBSTR(pt,5,2)) month_str
-            ,skc
-            ,sku
-            ,SUM(is_online) > 1 sku_is_online_month
-    FROM    cupshe_bigdata_cdm.dwd_prod_shopify_product_history_di
-    WHERE   pt >= 20260101
-    AND     pt <= 20260630
-    GROUP BY CONCAT(SUBSTR(pt,1,4),'-',SUBSTR(pt,5,2))
-             ,skc
-             ,sku
-)
-SELECT  sio.month_str 月
-        ,sio.skc
-        ,sio.sku
-        ,shangjia_skc_us_info.first_published_at
-        ,d.second_category
-        ,d.third_category
-        ,d.category
-        ,c.skc当月在架天数
-        ,d.style_position_name
-        ,d.theme -- ,sum(if(date_str between first_published_at and DATE_ADD(first_published_at,3),sale_quantity,null)) over (partition by sale_info.sku) 上架3天销量
-        -- ,sum(if(date_str between first_published_at and DATE_ADD(first_published_at,5),sale_quantity,null)) over (partition by sale_info.sku) 上架5天销量
-        -- ,sum(if(date_str between first_published_at and DATE_ADD(first_published_at,7),sale_quantity,null)) over (partition by sale_info.sku) 上架7天销量
-        -- ,sum(if(date_str between first_published_at and DATE_ADD(first_published_at,15),sale_quantity,null)) over (partition by sale_info.sku)上架15天销量
-        -- ,sum(if(date_str between first_published_at and DATE_ADD(first_published_at,30),sale_quantity,null)) over (partition by sale_info.sku) 上架30天销量
-        -- ,sum(if(date_str between first_published_at and DATE_ADD(first_published_at,45),sale_quantity,null)) over (partition by sale_info.sku) 上架45天销量
-        -- ,sum(if(date_str between first_published_at and DATE_ADD(first_published_at,60),sale_quantity,null)) over (partition by sale_info.sku) 上架60天销量
-        -- ,sum(if(date_str between first_published_at and DATE_ADD(first_published_at,90),sale_quantity,null)) over (partition by sale_info.sku) 上架90天销量
-        ,SUM(销量) 销量
-        ,SUM(销售额) 销售额 -- skc当月在架天数
-FROM    (
-            SELECT  *
-            FROM    sku_is_online sio
-            WHERE   sku_is_online_month = true
-        ) sio
-LEFT JOIN   (
-                SELECT  SUBSTR(date_str,1,7) 月
-                        ,skc
-                        ,sku
-                        ,SUM(sale_quantity) 销量
-                        ,SUM(sale_amount_us) 销售额
-                FROM    sale_info
-                GROUP BY SUBSTR(date_str,1,7)
-                         ,skc
-                         ,sku
-            ) si
-ON      sio.month_str = si.月
-AND     sio.skc = si.skc
-AND     sio.sku = si.sku
-LEFT JOIN shangjia_skc_us_info
-ON      sio.skc = shangjia_skc_us_info.skc
-LEFT JOIN   (
-                SELECT  SUBSTR(date_str,1,7) month_str
-                        ,skc
-                        ,SUM(is_online_adjustment) skc当月在架天数
-                FROM    cupshe_bigdata_ads.ads_prod_skc_product_info_di
-                WHERE   pt >= 20260101
-                AND     pt <= 20260630
-                GROUP BY SUBSTR(date_str,1,7)
-                         ,skc
-            ) c
-ON      c.skc = sio.skc
-AND     c.month_str = sio.month_str
-LEFT JOIN   (
-                SELECT  skc
-                        ,combination_skc
-                        ,category
-                        ,second_category_name second_category
-                        ,third_category_name third_category
-                        ,MAX(style_position_name) style_position_name
-                        ,MAX(theme) theme
-                FROM    cupshe_bigdata_cdm.dim_pub_cp_skc_info_di
-                WHERE   pt = MAX_PT('cupshe_bigdata_cdm.dim_pub_cp_skc_info_di')
-                GROUP BY skc
-                         ,combination_skc
-                         ,category
-                         ,second_category
-                         ,third_category
-            ) d
-ON      NVL(d.combination_skc,d.skc) = sio.skc
-WHERE   d.category IN ('成衣','内睡')
-GROUP BY sio.month_str
-         ,sio.skc
-         ,sio.sku
-         ,shangjia_skc_us_info.first_published_at
-         ,d.second_category
-         ,d.third_category
-         ,d.category
-         ,c.skc当月在架天数
-         ,d.style_position_name
-         ,d.theme
- ;
+-- 退件率=（退款件数+退券件数）/ 销量
+SELECT 
+    -- substr(date_str,1,7) 销售月
+    rid.cp
+    ,rid.skc
+    ,一级品类
+    ,二级品类
+    ,三级品类
+    ,图片链接
+    ,首次上架时间
+    ,trim(if(sku_first_reason_name = '',null,sku_first_reason_name)) sku级别一级原因
+    ,trim(if(sku_second_reason_name = '',null,sku_second_reason_name)) sku级别二级原因
+    ,trim(if(sku_third_reason_name = '',null,sku_third_reason_name)) sku级别三级原因
+    ,NVL(sum(sale_quantity),0) 销量
+    ,NVL(sum(sale_amount_usd),0) GMV
+    ,NVL(sum(refund_quantity),0) 退款数量
+    ,NVL(sum(refund_amount_usd),0) 退款金额
+    ,NVL(sum(refund_coupon_usd),0) 退券金额
+    ,NVL(SUM(refund_amount_usd+0.8*refund_coupon_usd),0) 退款退券金额
+    ,if(NVL(sum(sale_quantity),0)=0,0,NVL(sum(refund_quantity),0)/NVL(sum(sale_quantity),0)) 退件率
+    ,IF(NVL(sum(sale_amount_usd),0)=0,0,NVL(sum(refund_amount_usd),0)/NVL(sum(sale_amount_usd),0)) 退款率
+    ,IF(NVL(sum(sale_amount_usd),0)=0,0,NVL(sum(refund_coupon_usd),0)/NVL(sum(sale_amount_usd),0)) 退券率
+    ,IF(NVL(sum(sale_amount_usd),0)=0,0,NVL(SUM(refund_amount_usd+0.8*refund_coupon_usd),0)/NVL(sum(sale_amount_usd),0)) 退货率
+from cupshe_bigdata_ads.ads_scm_cp_refund_info_df rid
+left join skc_with_combination_commonly_used_dim cud on cud.skc = rid.skc
+WHERE 
+    rid.channel = '独立站' 
+    AND  date_str >= '2026-01-01' and date_str <= '2026-06-30'
+    and cud.业务部门 = 'ACC'
+    and substr(首次上架时间,1,7) >= '2026-01'  and substr(首次上架时间,1,7) <= '2026-06'
+    -- and rid.skc in ('CAB01B6C001CC','CAB01A6B001MG','CAB01A6C001MG','CAB01B5M001CC','CAB01B6A002GG','CAB01B6C002CC','CAB02A6A001KK','CAB01A6B002AA','CAB01A6A001AJ','CAB01B6A001GG','CAB01B5M002CC')
+group by 
+        -- substr(date_str,1,7)
+        rid.cp
+        ,rid.skc
+        ,首次上架时间
+        ,sku级别一级原因
+        ,sku级别二级原因
+        ,sku级别三级原因
+        ,一级品类
+        ,二级品类
+        ,三级品类
+        ,图片链接
+;
+
+
+
+
+

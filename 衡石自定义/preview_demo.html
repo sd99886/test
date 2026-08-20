@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>衡石动态柱状图 - 预览演示</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 600px;
+            padding: 20px;
+        }
+        
+        #main-chart {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .control-panel {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            z-index: 999;
+            background: rgba(255,255,255,0.95);
+            padding: 6px 10px;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+        
+        .control-panel button {
+            padding: 4px 10px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background: #fff;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+        
+        .control-panel button:hover {
+            background: #f5f5f5;
+            border-color: #999;
+        }
+        
+        .control-panel select {
+            padding: 4px 8px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 12px;
+            min-width: 100px;
+        }
+        
+        .info-section {
+            padding: 20px;
+            background: #fafafa;
+            border-top: 1px solid #eee;
+        }
+        
+        .info-section h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .info-item {
+            background: white;
+            padding: 12px;
+            border-radius: 4px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .info-item label {
+            font-size: 12px;
+            color: #666;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .info-item value {
+            font-size: 14px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .footer {
+            padding: 15px;
+            text-align: center;
+            background: #f5f5f5;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 二级品类销售额动态排名</h1>
+            <p>衡石自定义图表 - 动态柱状图演示（Bar Chart Race）</p>
+        </div>
+        
+        <div class="chart-container">
+            <div class="control-panel">
+                <button id="playPauseBtn"> 暂停</button>
+                <span style="color:#666;">月份：</span>
+                <select id="monthSelector"></select>
+            </div>
+            <div id="main-chart"></div>
+        </div>
+        
+        <div class="info-section">
+            <h3>📊 功能说明</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>更新频率</label>
+                    <value>每 2 秒切换一次月份</value>
+                </div>
+                <div class="info-item">
+                    <label>动画时长</label>
+                    <value>1 秒平滑过渡</value>
+                </div>
+                <div class="info-item">
+                    <label>显示数量</label>
+                    <value>前 10 名品类</value>
+                </div>
+                <div class="info-item">
+                    <label>数据格式</label>
+                    <value>销售额以 "xx.xW" 显示</value>
+                </div>
+                <div class="info-item">
+                    <label>交互功能</label>
+                    <value>播放/暂停 + 月份选择</value>
+                </div>
+                <div class="info-item">
+                    <label>适用平台</label>
+                    <value>衡石分析平台 v6.1+</value>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>💡 提示：这是一个本地演示版本，实际使用时请将代码复制到衡石平台的 JS 图表编辑器中</p>
+            <p> 源代码位置：衡石自定义/dynamic_bar_chart_race_with_control.js</p>
+        </div>
+    </div>
+
+    <script>
+        // 模拟数据生成
+        var categories = ['连衣裙', 'T恤', '牛仔裤', '衬衫', '卫衣', '休闲裤', '西装', '毛衣', '风衣', '短裤', 
+                         '运动裤', 'polo衫', '夹克', '羽绒服', '大衣', '背心', '吊带', '阔腿裤', '铅笔裤', '哈伦裤'];
+        
+        var months = ['2024-01', '2024-02', '2024-03', '2024-04', '2024-05', '2024-06', 
+                      '2024-07', '2024-08', '2024-09', '2024-10', '2024-11', '2024-12'];
+        
+        // 生成随机销售数据
+        function generateData() {
+            var data = [];
+            for (var m = 0; m < months.length; m++) {
+                var monthData = [];
+                for (var c = 0; c < categories.length; c++) {
+                    // 基础销售额 + 随机波动 + 季节性调整
+                    var baseSales = 50000 + Math.random() * 100000;
+                    var seasonalFactor = 1 + 0.3 * Math.sin(m * 0.5 + c * 0.3);
+                    var sales = Math.round(baseSales * seasonalFactor);
+                    monthData.push({ name: categories[c], value: sales });
+                }
+                // 按销售额降序排序
+                monthData.sort(function(a, b) { return b.value - a.value; });
+                data.push({ time: months[m], data: monthData });
+            }
+            return data;
+        }
+        
+        var chartData = generateData();
+        var updateFrequency = 2000;
+        var animationDuration = 1000;
+        var maxBars = 10;
+        var currentFrame = 0;
+        var timer;
+        var isPlaying = true;
+        
+        // 初始化 ECharts
+        var myChart = echarts.init(document.getElementById('main-chart'));
+        
+        // 格式化数字为 xxW
+        function formatNumber(num) {
+            if (num >= 10000) {
+                return (num / 10000).toFixed(1) + 'W';
+            }
+            return Math.round(num).toLocaleString();
+        }
+        
+        // 查找索引
+        function findIndexByValue(arr, value) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].name === value) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        
+        // 填充月份选择器
+        var monthSelector = document.getElementById('monthSelector');
+        for (var m = 0; m < chartData.length; m++) {
+            var option = document.createElement('option');
+            option.value = m.toString();
+            option.textContent = chartData[m].time;
+            monthSelector.appendChild(option);
+        }
+        
+        // 更新图表
+        function updateChart() {
+            if (currentFrame >= chartData.length) {
+                currentFrame = 0;
+            }
+            
+            var frameData = chartData[currentFrame];
+            var currentTime = frameData.time;
+            var topCategories = frameData.data.slice(0, maxBars);
+            
+            var colors = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', 
+                         '#3ba272', '#fc8452', '#91cd77', '#f05b72', '#ef5b9c'];
+            
+            var yAxisData = [];
+            var seriesData = [];
+            for (var n = 0; n < topCategories.length; n++) {
+                yAxisData.push(topCategories[n].name);
+            }
+            yAxisData.reverse();
+            
+            for (var n = 0; n < topCategories.length; n++) {
+                seriesData.push(topCategories[n].value);
+            }
+            seriesData.reverse();
+            
+            var option = {
+                title: {
+                    text: '二级品类销售额动态排名',
+                    subtext: '当前时间: ' + currentTime,
+                    left: 'center',
+                    top: 50
+                },
+                xAxis: {
+                    type: 'value',
+                    max: 'dataMax',
+                    axisLabel: {
+                        formatter: function(n) {
+                            return formatNumber(n);
+                        }
+                    }
+                },
+                yAxis: {
+                    type: 'category',
+                    data: yAxisData,
+                    inverse: true,
+                    animationDuration: 300,
+                    animationDurationUpdate: 300,
+                    max: maxBars - 1,
+                    axisLabel: {
+                        show: true,
+                        formatter: function(value) {
+                            var index = findIndexByValue(topCategories, value);
+                            return (index + 1) + '. ' + value;
+                        }
+                    }
+                },
+                series: [{
+                    realtimeSort: true,
+                    name: '销售额',
+                    type: 'bar',
+                    data: seriesData,
+                    label: {
+                        show: true,
+                        position: 'right',
+                        valueAnimation: true,
+                        formatter: function(param) {
+                            return formatNumber(param.value);
+                        }
+                    },
+                    itemStyle: {
+                        borderRadius: [0, 4, 4, 0],
+                        color: function(param) {
+                            return colors[param.dataIndex % colors.length];
+                        }
+                    }
+                }],
+                animationDuration: 0,
+                animationDurationUpdate: animationDuration,
+                animationEasing: 'linear',
+                animationEasingUpdate: 'linear',
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    },
+                    formatter: function(params) {
+                        var dataIndex = params[0].dataIndex;
+                        var reversedIndex = topCategories.length - 1 - dataIndex;
+                        var category = topCategories[reversedIndex];
+                        return '<strong>' + category.name + '</strong><br/>' +
+                               '销售额：' + formatNumber(category.value) + '<br/>' +
+                               '排名：第' + (reversedIndex + 1) + '名';
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '15%',
+                    bottom: '3%',
+                    top: 80,
+                    containLabel: true
+                }
+            };
+            
+            myChart.setOption(option);
+            monthSelector.value = currentFrame.toString();
+            currentFrame++;
+        }
+        
+        // 启动动画
+        function startAnimation() {
+            if (timer) clearInterval(timer);
+            isPlaying = true;
+            document.getElementById('playPauseBtn').textContent = '⏸ 暂停';
+            timer = setInterval(updateChart, updateFrequency);
+        }
+        
+        // 暂停动画
+        function pauseAnimation() {
+            if (timer) clearInterval(timer);
+            isPlaying = false;
+            document.getElementById('playPauseBtn').textContent = '▶ 播放';
+        }
+        
+        // 按钮事件
+        document.getElementById('playPauseBtn').onclick = function() {
+            if (isPlaying) {
+                pauseAnimation();
+            } else {
+                startAnimation();
+            }
+        };
+        
+        // 月份选择事件
+        monthSelector.onchange = function(event) {
+            pauseAnimation();
+            currentFrame = parseInt(event.target.value);
+            updateChart();
+        };
+        
+        // 初始渲染并启动
+        updateChart();
+        startAnimation();
+        
+        // 响应式调整
+        window.addEventListener('resize', function() {
+            myChart.resize();
+        });
+    </script>
+</body>
+</html>
