@@ -1,0 +1,11 @@
+# 飞书应用凭证（请替换为你自己的值）
+# 在 https://open.feishu.cn/app 创建应用后获取
+APP_ID = "cli_xxxxxxxxxxxxxx"       # 替换为你的 App ID
+APP_SECRET = "xxxxxxxxxxxxxxxx"     # 替换为你的 App Secret
+
+# OAuth2 回调地址（用于获取 user_access_token）
+# 需要在飞书应用「安全设置」中添加此重定向 URL
+REDIRECT_URI = "http://localhost:8899/callback"
+
+# 本地服务端口（用于接收 OAuth 回调）
+LOCAL_PORT = 8899
