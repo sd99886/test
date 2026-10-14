@@ -1,0 +1,26 @@
+# 敏感配置文件
+config.py
+
+# Token 缓存
+*.json
+!.gitignore
+!README.md
+
+# 导出文件
+output/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
