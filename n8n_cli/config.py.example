@@ -1,0 +1,15 @@
+"""
+n8n 远程工作流 CLI - 配置文件模板
+
+使用前请复制为 config.py 并填写真实值:
+    cp config.py.example config.py
+"""
+
+# 企业 n8n 实例地址（不带末尾斜杠）
+BASE_URL = "https://your-n8n.example.com"
+
+# API Key: n8n 界面 → 右上角头像 → Settings → n8n API → Create an API key
+API_KEY = "n8n_api_xxxxxxxxxxxxxxxx"
+
+# 默认项目 ID（可选，用于 list 过滤提示，不影响 API 调用）
+PROJECT_ID = ""

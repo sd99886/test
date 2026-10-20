@@ -1,0 +1,7 @@
+config.py
+__pycache__/
+*.pyc
+
+# 诊断/补丁脚本与工作流导出(含真实 token、open_id、人名, 禁止入库)
+out/
+*.json
