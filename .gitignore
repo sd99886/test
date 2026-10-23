@@ -37,6 +37,9 @@ config.py
 .env.local
 .env.production
 
+# 未脱敏的本地 skill 目录（只允许脱敏版 skills/ 入库）
+skills_local/
+
 # IDE
 .vscode/
 .idea/

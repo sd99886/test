@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+# 飞书应用凭证模板：复制本文件为 config.py 并填入真实值（config.py 已被 .gitignore 排除，勿提交）
+# 在 https://open.feishu.cn/app 创建应用后获取；回调地址需在应用「安全设置」中预先配置
+APP_ID = "cli_xxxxxxxxxxxxxxxx"        # 替换为你的 App ID
+APP_SECRET = "your_app_secret_here"    # 替换为你的 App Secret
+
+# OAuth2 回调地址（用于获取 user_access_token）
+REDIRECT_URI = "http://localhost:8899/callback"
+
+# 本地服务端口（用于接收 OAuth 回调）
+LOCAL_PORT = 8899
