@@ -1,0 +1,23 @@
+{
+  "name": "monthly-ops-analysis",
+  "displayName": "月度经营分析",
+  "version": "0.1.0",
+  "description": "Generate a fixed-structure monthly e-commerce operations analysis report from read-only MaxCompute SQL scripts via odps-query, with derived SQL self-registration and chart output.",
+  "descriptionZh": "月度经营分析：自学只读 SQL 脚本（目标达成/品类拆解/新老品），经 odps-query 取数，按固定大纲生成含图表的经营分析报告，派生查询自动固化复用。",
+  "author": {
+    "name": "Qoder"
+  },
+  "logo": "./assets/avatar.svg",
+  "keywords": [
+    "qoder-plugin",
+    "skill",
+    "maxcompute",
+    "odps",
+    "经营分析"
+  ],
+  "category": "developer-tools",
+  "tags": [
+    "skill"
+  ],
+  "skills": "./skills/"
+}

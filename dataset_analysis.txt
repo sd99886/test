@@ -1,0 +1,374 @@
+Sheet: Datasets Fusion
+列数: 51
+数据行数: 2102
+字段名: ['创建时间', '异常工单号', '来源', 'supplier_id', '供应商', 'first_level_reason_id', 'second_level_reason_id', 'third_level_reason_id', 'cp', 'skc', '是否询期', '询期编号', 'po', '大类', '异常描述', '状态', '异常类型', '物料编码', '供应商代码', '确认色号', 'supplier_id_material', '物料供应商', 'creator_id', '发起方（外部供应商）', '发起方（内部员工）', '发起方', '一级异常原因', '二级异常原因', '三级异常原因', '当前处理人', 'handler_id', '采购员', 'purchaser_id', 'id', 'proc_production_exception_order_node id', 'exception_order_id', 'node_id', 'node_seq', 'node_name', 'proc_production_exception_order_node handler_id', 'status', 'gmt_create', 'gmt_modified', 'proc_production_exception_order_node creator_id', 'modifier_id', 'is_del', 'process_name', 'process_code', 'filed_code', 'field_value', 'field_name']
+
+前5行数据:
+  Row 1:
+    创建时间: 2026-07-02 00:00:00
+    异常工单号: YC260702010
+    来源: 外部
+    supplier_id: 1857.0
+    供应商: 赣州骏海服饰有限公司
+    first_level_reason_id: 1.0
+    second_level_reason_id: 11.0
+    third_level_reason_id: 136.0
+    cp: CPCOV410006
+    skc: CAA07F3F005CC
+    是否询期: 否
+    询期编号: None
+    po: PO6026063000104
+    大类: 创新
+    异常描述: 大货面料到厂洗缩不合格
+    状态: 已完成
+    异常类型: 生产异常
+    物料编码: FWCP0546843
+    供应商代码: 2871-6
+    确认色号: 19#米白
+    supplier_id_material: 2871.0
+    物料供应商: 盛千瑞纺织品
+    creator_id: 1857.0
+    发起方（外部供应商）: 赣州骏海服饰有限公司
+    发起方（内部员工）: 
+    发起方: 赣州骏海服饰有限公司
+    一级异常原因: 面料异常
+    二级异常原因: 面料品质异常
+    三级异常原因: 缩率不符合要求
+    当前处理人: 
+    handler_id: None
+    采购员: 孙韩飞
+    purchaser_id: 2879.0
+    id: 49.0
+    proc_production_exception_order_node id: 41.0
+    exception_order_id: 49.0
+    node_id: 2.0
+    node_seq: 2.0
+    node_name: 面料组完成异常处理
+    proc_production_exception_order_node handler_id: 3378
+    status: 3.0
+    gmt_create: 2026-07-02 21:37:29
+    gmt_modified: 2026-07-24 09:37:27
+    proc_production_exception_order_node creator_id: 1857.0
+    modifier_id: 3378.0
+    is_del: 0.0
+    process_name: 面料质量&时效异常
+    process_code: LC260416001
+    filed_code: 3.0
+    field_value: 7月3日已换货过去 换货后可以用了
+    field_name: 最终处理方案
+
+  Row 2:
+    创建时间: 2026-07-09 00:00:00
+    异常工单号: YC260709002
+    来源: 外部
+    supplier_id: 1950.0
+    供应商: 赣州市棱致服饰有限公司
+    first_level_reason_id: 2.0
+    second_level_reason_id: 12.0
+    third_level_reason_id: 161.0
+    cp: CPDRS890414
+    skc: CAA05F6E046SS
+    是否询期: 否
+    询期编号: None
+    po: PO5626063000010
+    大类: 创新
+    异常描述: 花边漏了染色
+    状态: 已完成
+    异常类型: 生产异常
+    物料编码: AOH1220103
+    供应商代码: K2251
+    确认色号: 白色
+    supplier_id_material: 2430.0
+    物料供应商: 东辉(佳诚服装辅料)
+    creator_id: 1950.0
+    发起方（外部供应商）: 赣州市棱致服饰有限公司
+    发起方（内部员工）: 
+    发起方: 赣州市棱致服饰有限公司
+    一级异常原因: 辅料异常
+    二级异常原因: 辅料货期异常
+    三级异常原因: 辅料发货延期
+    当前处理人: 
+    handler_id: None
+    采购员: 赖晓敏
+    purchaser_id: 2371.0
+    id: 71.0
+    proc_production_exception_order_node id: 326.0
+    exception_order_id: 71.0
+    node_id: 8.0
+    node_seq: 2.0
+    node_name: 辅料组完成异常处理
+    proc_production_exception_order_node handler_id: 3378
+    status: 3.0
+    gmt_create: 2026-08-06 16:26:47
+    gmt_modified: 2026-08-21 11:19:26
+    proc_production_exception_order_node creator_id: 1950.0
+    modifier_id: 3378.0
+    is_del: 0.0
+    process_name: 辅料质量&时效异常
+    process_code: LC260424001
+    filed_code: 1.0
+    field_value: None
+    field_name: None
+
+  Row 3:
+    创建时间: 2026-07-09 00:00:00
+    异常工单号: YC260709002
+    来源: 外部
+    supplier_id: 1950.0
+    供应商: 赣州市棱致服饰有限公司
+    first_level_reason_id: 2.0
+    second_level_reason_id: 12.0
+    third_level_reason_id: 161.0
+    cp: CPDRS890414
+    skc: CAA05F6E046SS
+    是否询期: 否
+    询期编号: None
+    po: PO5626063000010
+    大类: 创新
+    异常描述: 花边漏了染色
+    状态: 已完成
+    异常类型: 生产异常
+    物料编码: AOL1217707
+    供应商代码: K2900
+    确认色号: 白色
+    supplier_id_material: 2430.0
+    物料供应商: 东辉(佳诚服装辅料)
+    creator_id: 1950.0
+    发起方（外部供应商）: 赣州市棱致服饰有限公司
+    发起方（内部员工）: 
+    发起方: 赣州市棱致服饰有限公司
+    一级异常原因: 辅料异常
+    二级异常原因: 辅料货期异常
+    三级异常原因: 辅料发货延期
+    当前处理人: 
+    handler_id: None
+    采购员: 赖晓敏
+    purchaser_id: 2371.0
+    id: 71.0
+    proc_production_exception_order_node id: 326.0
+    exception_order_id: 71.0
+    node_id: 8.0
+    node_seq: 2.0
+    node_name: 辅料组完成异常处理
+    proc_production_exception_order_node handler_id: 3378
+    status: 3.0
+    gmt_create: 2026-08-06 16:26:47
+    gmt_modified: 2026-08-21 11:19:26
+    proc_production_exception_order_node creator_id: 1950.0
+    modifier_id: 3378.0
+    is_del: 0.0
+    process_name: 辅料质量&时效异常
+    process_code: LC260424001
+    filed_code: 1.0
+    field_value: None
+    field_name: None
+
+  Row 4:
+    创建时间: 2026-07-06 00:00:00
+    异常工单号: YC260706005
+    来源: 外部
+    supplier_id: 1950.0
+    供应商: 赣州市棱致服饰有限公司
+    first_level_reason_id: 1.0
+    second_level_reason_id: 11.0
+    third_level_reason_id: 137.0
+    cp: CPBDS260019
+    skc: CAA13A2E001SS
+    是否询期: 否
+    询期编号: None
+    po: PO8026070100118
+    大类: 创新
+    异常描述: 面料掉色
+    状态: 已完成
+    异常类型: 生产异常
+    物料编码: None
+    供应商代码: None
+    确认色号: None
+    supplier_id_material: None
+    物料供应商: None
+    creator_id: 1950.0
+    发起方（外部供应商）: 赣州市棱致服饰有限公司
+    发起方（内部员工）: 
+    发起方: 赣州市棱致服饰有限公司
+    一级异常原因: 面料异常
+    二级异常原因: 面料品质异常
+    三级异常原因: 色牢度、干摩擦、湿摩擦问题
+    当前处理人: 
+    handler_id: None
+    采购员: 赖晓敏
+    purchaser_id: 2371.0
+    id: 63.0
+    proc_production_exception_order_node id: 73.0
+    exception_order_id: 63.0
+    node_id: 1.0
+    node_seq: 1.0
+    node_name: 面料组接收处理异常
+    proc_production_exception_order_node handler_id: 3378
+    status: 3.0
+    gmt_create: 2026-07-06 16:50:55
+    gmt_modified: 2026-08-06 16:28:38
+    proc_production_exception_order_node creator_id: 1950.0
+    modifier_id: 1950.0
+    is_del: 1.0
+    process_name: 面料质量&时效异常
+    process_code: LC260416001
+    filed_code: 2.0
+    field_value: None
+    field_name: None
+
+  Row 5:
+    创建时间: 2026-07-09 00:00:00
+    异常工单号: YC260709002
+    来源: 外部
+    supplier_id: 1950.0
+    供应商: 赣州市棱致服饰有限公司
+    first_level_reason_id: 2.0
+    second_level_reason_id: 12.0
+    third_level_reason_id: 161.0
+    cp: CPDRS890414
+    skc: CAA05F6E046SS
+    是否询期: 否
+    询期编号: None
+    po: PO5626063000010
+    大类: 创新
+    异常描述: 花边漏了染色
+    状态: 已完成
+    异常类型: 生产异常
+    物料编码: AOH1220103
+    供应商代码: K2251
+    确认色号: 白色
+    supplier_id_material: 2430.0
+    物料供应商: 东辉(佳诚服装辅料)
+    creator_id: 1950.0
+    发起方（外部供应商）: 赣州市棱致服饰有限公司
+    发起方（内部员工）: 
+    发起方: 赣州市棱致服饰有限公司
+    一级异常原因: 辅料异常
+    二级异常原因: 辅料货期异常
+    三级异常原因: 辅料发货延期
+    当前处理人: 
+    handler_id: None
+    采购员: 赖晓敏
+    purchaser_id: 2371.0
+    id: 71.0
+    proc_production_exception_order_node id: 327.0
+    exception_order_id: 71.0
+    node_id: 9.0
+    node_seq: 3.0
+    node_name: 订单组确认异常处理结果
+    proc_production_exception_order_node handler_id: 2371
+    status: 3.0
+    gmt_create: 2026-08-06 16:26:47
+    gmt_modified: 2026-08-21 22:29:41
+    proc_production_exception_order_node creator_id: 1950.0
+    modifier_id: 2371.0
+    is_del: 0.0
+    process_name: 辅料质量&时效异常
+    process_code: LC260424001
+    filed_code: 6.0
+    field_value: None
+    field_name: None
+
+各列统计:
+  [创建时间] 非空:2102, 空:0, 唯一值:73, 类型:datetime
+    样例: [datetime.datetime(2026, 7, 2, 0, 0), datetime.datetime(2026, 7, 9, 0, 0), datetime.datetime(2026, 7, 9, 0, 0)]
+  [异常工单号] 非空:2102, 空:0, 唯一值:495, 类型:str
+    样例: ['YC260702010', 'YC260709002', 'YC260709002']
+  [来源] 非空:2102, 空:0, 唯一值:2, 类型:str
+    值分布: {'内部': 195, '外部': 1907}
+  [supplier_id] 非空:2102, 空:0, 唯一值:40, 类型:float
+    样例: [1857.0, 1950.0, 1950.0]
+  [供应商] 非空:2102, 空:0, 唯一值:40, 类型:str
+    样例: ['赣州骏海服饰有限公司', '赣州市棱致服饰有限公司', '赣州市棱致服饰有限公司']
+  [first_level_reason_id] 非空:2102, 空:0, 唯一值:6, 类型:float
+    值分布: {'5.0': 10, '1.0': 1460, '7.0': 3, '4.0': 32, '2.0': 558, '8.0': 39}
+  [second_level_reason_id] 非空:2102, 空:0, 唯一值:15, 类型:float
+    值分布: {'17.0': 32, '12.0': 213, '127.0': 57, '10.0': 20, '124.0': 31, '24.0': 38, '25.0': 1, '125.0': 259, '9.0': 427, '13.0': 150, '19.0': 10, '126.0': 8, '171.0': 3, '14.0': 130, '11.0': 723}
+  [third_level_reason_id] 非空:2102, 空:0, 唯一值:52, 类型:float
+    样例: [136.0, 161.0, 161.0]
+  [cp] 非空:2091, 空:11, 唯一值:326, 类型:str
+    样例: ['CPCOV410006', 'CPDRS890414', 'CPDRS890414']
+  [skc] 非空:2091, 空:11, 唯一值:326, 类型:str
+    样例: ['CAA07F3F005CC', 'CAA05F6E046SS', 'CAA05F6E046SS']
+  [是否询期] 非空:2102, 空:0, 唯一值:2, 类型:str
+    值分布: {'否': 2051, '是': 51}
+  [询期编号] 非空:51, 空:2051, 唯一值:49, 类型:str
+    样例: ['XQ260916007002', 'XQ260804005001', 'XQ260911002008']
+  [po] 非空:2051, 空:51, 唯一值:375, 类型:str
+    样例: ['PO6026063000104', 'PO5626063000010', 'PO5626063000010']
+  [大类] 非空:2086, 空:16, 唯一值:4, 类型:str
+    值分布: {'创新': 1682, '睡衣': 10, '买手泳衣': 117, '自研泳衣': 277}
+  [异常描述] 非空:2102, 空:0, 唯一值:379, 类型:str
+    样例: ['大货面料到厂洗缩不合格', '花边漏了染色', '花边漏了染色']
+  [状态] 非空:2102, 空:0, 唯一值:5, 类型:str
+    值分布: {'已撤回': 21, '已拒绝': 113, '审批中': 324, '草稿': 12, '已完成': 1632}
+  [异常类型] 非空:2096, 空:6, 唯一值:2, 类型:str
+    值分布: {'生产异常': 2049, '下单异常': 47}
+  [物料编码] 非空:1852, 空:250, 唯一值:211, 类型:str
+    样例: ['FWCP0546843', 'AOH1220103', 'AOL1217707']
+  [供应商代码] 非空:1963, 空:139, 唯一值:231, 类型:str
+    样例: ['2871-6', 'K2251', 'K2900']
+  [确认色号] 非空:1827, 空:275, 唯一值:186, 类型:str
+    样例: ['19#米白', '白色', '白色']
+  [supplier_id_material] 非空:1941, 空:161, 唯一值:81, 类型:float
+    样例: [2871.0, 2430.0, 2430.0]
+  [物料供应商] 非空:1941, 空:161, 唯一值:81, 类型:str
+    样例: ['盛千瑞纺织品', '东辉(佳诚服装辅料)', '东辉(佳诚服装辅料)']
+  [creator_id] 非空:2102, 空:0, 唯一值:36, 类型:float
+    样例: [1857.0, 1950.0, 1950.0]
+  [发起方（外部供应商）] 非空:1994, 空:108, 唯一值:32, 类型:str
+    样例: ['赣州骏海服饰有限公司', '赣州市棱致服饰有限公司', '赣州市棱致服饰有限公司']
+  [发起方（内部员工）] 非空:2102, 空:0, 唯一值:5, 类型:str
+    值分布: {'': 2051, '孙韩飞': 17, '李扬贤': 9, 'Ciel-曾程': 21, 'Larry-赖晓敏': 4}
+  [发起方] 非空:2102, 空:0, 唯一值:36, 类型:str
+    样例: ['赣州骏海服饰有限公司', '赣州市棱致服饰有限公司', '赣州市棱致服饰有限公司']
+  [一级异常原因] 非空:2102, 空:0, 唯一值:6, 类型:str
+    值分布: {'大货工艺资料问题': 32, '订单下发异常': 39, '面料异常': 1460, '其他': 3, '辅料异常': 558, '价格差异': 10}
+  [二级异常原因] 非空:2102, 空:0, 唯一值:15, 类型:str
+    值分布: {'询期异常': 38, '辅料货期异常': 213, '辅料价格异常': 8, '辅料颜色异常': 57, '面料货期异常': 427, '辅料其他异常': 130, '工艺单问题': 32, '辅料品质异常': 150, '新品下单异常': 1, '面料颜色异常': 259, '面料其他异常': 31, '面料品质异常': 723, '价格异常': 10, '面料价格异常': 20, '大货订单交期变更审批': 3}
+  [三级异常原因] 非空:2102, 空:0, 唯一值:52, 类型:str
+    样例: ['缩率不符合要求', '辅料发货延期', '辅料发货延期']
+  [当前处理人] 非空:2102, 空:0, 唯一值:18, 类型:str
+    样例: ['', '', '']
+  [handler_id] 非空:324, 空:1778, 唯一值:17, 类型:str
+    样例: ['3378', '3378', '3378']
+  [采购员] 非空:2051, 空:51, 唯一值:10, 类型:str
+    值分布: {'王丹': 70, '孙韩飞': 211, '李扬贤': 139, '林颖虹': 29, '雍金凤': 117, '曾程': 181, '陈晓慧': 85, '温东': 98, '杜淑茹': 11, '赖晓敏': 1110}
+  [purchaser_id] 非空:2051, 空:51, 唯一值:10, 类型:float
+    值分布: {'2371.0': 1110, '3347.0': 181, '3176.0': 98, '2879.0': 211, '1026.0': 29, '2334.0': 117, '3227.0': 70, '1009.0': 11, '2275.0': 85, '2509.0': 139}
+  [id] 非空:2102, 空:0, 唯一值:495, 类型:float
+    样例: [49.0, 71.0, 71.0]
+  [proc_production_exception_order_node id] 非空:1873, 空:229, 唯一值:743, 类型:float
+    样例: [41.0, 326.0, 326.0]
+  [exception_order_id] 非空:1873, 空:229, 唯一值:282, 类型:float
+    样例: [49.0, 71.0, 71.0]
+  [node_id] 非空:1873, 空:229, 唯一值:10, 类型:float
+    值分布: {'5.0': 84, '1.0': 601, '7.0': 276, '4.0': 162, '9.0': 60, '2.0': 314, '13.0': 3, '8.0': 183, '3.0': 148, '6.0': 42}
+  [node_seq] 非空:1873, 空:229, 唯一值:3, 类型:float
+    值分布: {'2.0': 581, '3.0': 250, '1.0': 1042}
+  [node_name] 非空:1873, 空:229, 唯一值:6, 类型:str
+    值分布: {'辅料组接收处理异常': 276, '面料组接收处理异常': 763, '成本部确认价格异常内容': 3, '订单组确认异常处理结果': 250, '辅料组完成异常处理': 183, '面料组完成异常处理': 398}
+  [proc_production_exception_order_node handler_id] 非空:1873, 空:229, 唯一值:15, 类型:str
+    值分布: {'3313': 114, '2879': 27, '3378': 1297, '3227': 1, '1026': 4, '2371': 161, '2344': 3, '3556': 51, '3570': 99, '3347': 15, '3176': 13, '2334': 15, '2275': 12, '3499': 50, '2509': 11}
+  [status] 非空:1873, 空:229, 唯一值:1, 类型:float
+    值分布: {'3.0': 1873}
+  [gmt_create] 非空:1873, 空:229, 唯一值:291, 类型:datetime
+    样例: [datetime.datetime(2026, 7, 2, 21, 37, 29), datetime.datetime(2026, 8, 6, 16, 26, 47), datetime.datetime(2026, 8, 6, 16, 26, 47)]
+  [gmt_modified] 非空:1873, 空:229, 唯一值:741, 类型:datetime
+    样例: [datetime.datetime(2026, 7, 24, 9, 37, 27), datetime.datetime(2026, 8, 21, 11, 19, 26), datetime.datetime(2026, 8, 21, 11, 19, 26)]
+  [proc_production_exception_order_node creator_id] 非空:1873, 空:229, 唯一值:24, 类型:float
+    样例: [1857.0, 1950.0, 1950.0]
+  [modifier_id] 非空:1873, 空:229, 唯一值:17, 类型:float
+    样例: [3378.0, 3378.0, 3378.0]
+  [is_del] 非空:1873, 空:229, 唯一值:2, 类型:float
+    值分布: {'0.0': 1795, '1.0': 78}
+  [process_name] 非空:1873, 空:229, 唯一值:4, 类型:str
+    值分布: {'价格差异': 3, '面料数量异常': 288, '辅料质量&时效异常': 519, '面料质量&时效异常': 1063}
+  [process_code] 非空:1873, 空:229, 唯一值:4, 类型:str
+    值分布: {'LC260424001': 519, 'LC260629001': 3, 'LC260416001': 1063, 'LC260417001': 288}
+  [filed_code] 非空:1873, 空:229, 唯一值:6, 类型:float
+    值分布: {'5.0': 42, '1.0': 411, '4.0': 262, '2.0': 346, '3.0': 604, '6.0': 208}
+  [field_value] 非空:1568, 空:534, 唯一值:852, 类型:str
+    样例: ['7月3日已换货过去 换货后可以用了', '档口回复公司同意短出 不用补裁', '7.26已解决']
+  [field_name] 非空:1759, 空:343, 唯一值:6, 类型:str
+    值分布: {'最终处理方案': 568, '异常进度描述': 379, '异常结束时间': 320, '异常实际结束时间': 252, '调整后的预计到仓日期': 200, '影响范围': 40}

@@ -1,0 +1,33 @@
+{
+  "project": "cupshe_bigdata_ads",
+  "endpoint": "https://service.eu-central-1.maxcompute.aliyun.com/api",
+  "instance_id": "20261023034036845gvwqapnfnv1",
+  "access_key_id": "LTAI****",
+  "rows": 1479,
+  "columns": [
+    "date_type",
+    "date_str",
+    "big_category",
+    "second_category",
+    "是否当月新品",
+    "销售额",
+    "销量",
+    "详情页uv"
+  ],
+  "truncated": false,
+  "limit": 5000,
+  "timeout_seconds": 900,
+  "quota_name": null,
+  "hints": {},
+  "elapsed_seconds": 22.216,
+  "started_at": "2026-10-23T11:40:55",
+  "sql_sha256": "969409a335773657b95ab6609e125a147d2c9c71ebd7fa68572da23ef6f11fc9",
+  "sql_file": "S2D_品类日趋势.csv.sql",
+  "output_bytes": 101131,
+  "output_sha256": "eb00c099b52ddb0913f5255f57afb334258b8b354dca208e2d933352eeefbcaf",
+  "lint": {
+    "errors": [],
+    "warnings": [],
+    "allowed": []
+  }
+}

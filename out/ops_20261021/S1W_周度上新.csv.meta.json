@@ -1,0 +1,36 @@
+{
+  "project": "cupshe_bigdata_ads",
+  "endpoint": "https://service.eu-central-1.maxcompute.aliyun.com/api",
+  "instance_id": "20261022102231624gy95fwlqkn1",
+  "access_key_id": "LTAI****",
+  "rows": 5,
+  "columns": [
+    "周期",
+    "成衣一部",
+    "成衣二部",
+    "成衣",
+    "泳衣产品部",
+    "泳衣买手部",
+    "泳衣",
+    "内睡",
+    "acc",
+    "塑身衣项目部",
+    "全品类"
+  ],
+  "truncated": false,
+  "limit": 100,
+  "timeout_seconds": 900,
+  "quota_name": null,
+  "hints": {},
+  "elapsed_seconds": 25.917,
+  "started_at": "2026-10-22T18:22:55",
+  "sql_sha256": "3b5e4a64d414f768aad05a4962cb0a38311dcefb18ccdb8b943b918c02490c3e",
+  "sql_file": "S1W_周度上新.csv.sql",
+  "output_bytes": 329,
+  "output_sha256": "76b82550fb8f51fd0f3b2962bade8e788de61fa81bc5fc498a94278287b2be55",
+  "lint": {
+    "errors": [],
+    "warnings": [],
+    "allowed": []
+  }
+}

@@ -20,7 +20,7 @@ import time
 import webbrowser
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urlparse, quote
 from datetime import datetime
 
 import requests
@@ -29,6 +29,14 @@ from config import APP_ID, APP_SECRET, REDIRECT_URI, LOCAL_PORT
 
 # Token 缓存文件路径
 TOKEN_CACHE_FILE = os.path.join(os.path.dirname(__file__), ".token_cache.json")
+
+# OAuth 显式请求的用户级 scope（缺此参数时新开通的用户权限不会进入 token，
+# 会导致建文档/读群聊报 99991679）：覆盖发布报告与读群聊全链路。
+OAUTH_SCOPES = (
+    "docx:document docx:document:create "
+    "im:chat:readonly im:message:readonly "
+    "sheets:spreadsheet drive:drive"
+)
 
 
 # ==================== OAuth2 授权 ====================
@@ -85,7 +93,8 @@ def _do_oauth_authorization():
     auth_url = (
         "https://open.feishu.cn/open-apis/authen/v1/authorize"
         f"?app_id={APP_ID}"
-        f"&redirect_uri={REDIRECT_URI}"
+        f"&redirect_uri={quote(REDIRECT_URI, safe='')}"
+        f"&scope={quote(OAUTH_SCOPES)}"
         "&state=chat_reader"
     )
 

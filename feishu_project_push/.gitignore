@@ -1,0 +1,15 @@
+# 敏感文件
+.plugin_token_cache.json
+.user_task_token_cache.json
+.monitor_token_cache.json
+config.py
+
+# 任务数据
+group_tasks.json
+
+# 输出
+output/
+
+# Python
+__pycache__/
+*.pyc

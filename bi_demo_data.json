@@ -1,0 +1,4177 @@
+{
+  "summary": {
+    "total_orders": 495,
+    "status_distribution": {
+      "已完成": 1632,
+      "审批中": 324,
+      "已拒绝": 113,
+      "已撤回": 21,
+      "草稿": 12
+    },
+    "process_distribution": {
+      "面料质量&时效异常": 174,
+      "辅料质量&时效异常": 61,
+      "面料数量异常": 46,
+      "价格差异": 1,
+      "未知": 213
+    },
+    "reason1_distribution": {
+      "面料异常": 1460,
+      "辅料异常": 558,
+      "价格差异": 10,
+      "订单下发异常": 39,
+      "大货工艺资料问题": 32,
+      "其他": 3
+    },
+    "avg_hours": 407.8,
+    "max_hours": 1560.0,
+    "min_hours": 18.7
+  },
+  "node_stats": {
+    "面料组接收处理异常": {
+      "avg": 237.8,
+      "max": 743.6,
+      "min": 0.0,
+      "count": 40
+    },
+    "面料组完成异常处理": {
+      "avg": 272.5,
+      "max": 739.2,
+      "min": 0.0,
+      "count": 37
+    },
+    "订单组确认异常处理结果": {
+      "avg": 429.2,
+      "max": 1037.3,
+      "min": 18.7,
+      "count": 45
+    },
+    "辅料组接收处理异常": {
+      "avg": 139.8,
+      "max": 448.6,
+      "min": 0.0,
+      "count": 9
+    },
+    "辅料组完成异常处理": {
+      "avg": 143.0,
+      "max": 477.7,
+      "min": 0.1,
+      "count": 9
+    },
+    "成本部确认价格异常内容": {
+      "avg": 180.7,
+      "max": 180.7,
+      "min": 180.7,
+      "count": 1
+    }
+  },
+  "orders": [
+    {
+      "order_no": "YC260702010",
+      "create_time": "2026-07-02 00:00:00",
+      "supplier": "赣州骏海服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "大货面料到厂洗缩不合格",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "缩率不符合要求",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "孙韩飞",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-02 21:37:29",
+          "gmt_modified": "2026-07-24 09:37:19",
+          "duration_hours": 516.0,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7月3日已换货过去 换货后可以用了",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7月3日已换货过去 换货后可以用了",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-03 09:37:07",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-02 21:37:29",
+          "gmt_modified": "2026-07-24 09:37:27",
+          "duration_hours": 516.0,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7月3日已换货过去 换货后可以用了",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-03 09:37:24",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2879",
+          "gmt_create": "2026-07-02 21:37:29",
+          "gmt_modified": "2026-07-29 13:24:14",
+          "duration_hours": 639.8,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 639.8
+    },
+    {
+      "order_no": "YC260709002",
+      "create_time": "2026-07-09 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "花边漏了染色",
+      "reason_1": "辅料异常",
+      "reason_2": "辅料货期异常",
+      "reason_3": "辅料发货延期",
+      "process_name": "辅料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "辅料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-06 16:26:47",
+          "gmt_modified": "2026-08-21 11:19:16",
+          "duration_hours": 354.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-17 11:19:05",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-17 11:19:05",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.17出货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.17出货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7.17出货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7.17出货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.17出货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.17出货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7.17出货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7.17出货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-17 11:19:05",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-17 11:19:05",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "辅料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-06 16:26:47",
+          "gmt_modified": "2026-08-21 11:19:26",
+          "duration_hours": 354.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.17出货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.17出货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-17 11:19:21",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-17 11:19:21",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7.17出货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7.17出货",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-06 16:26:47",
+          "gmt_modified": "2026-08-21 22:29:41",
+          "duration_hours": 366.0,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": "2026-08-21 22:29:37",
+              "filed_code": 6.0
+            },
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": "2026-08-21 22:29:37",
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 366.0
+    },
+    {
+      "order_no": "YC260706005",
+      "create_time": "2026-07-06 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料掉色",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "色牢度、干摩擦、湿摩擦问题",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-06 16:50:55",
+          "gmt_modified": "2026-08-06 16:28:38",
+          "duration_hours": 743.6,
+          "is_del": 1,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "固色",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-08 16:54:56",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "固色",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-08 16:54:56",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "固色",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "固色",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-06 16:28:39",
+          "gmt_modified": "2026-09-05 18:39:35",
+          "duration_hours": 722.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "最后一次发货7.31",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-31 18:39:27",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-06 16:28:39",
+          "gmt_modified": "2026-09-09 16:49:12",
+          "duration_hours": 816.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 1560.0
+    },
+    {
+      "order_no": "YC260722002",
+      "create_time": "2026-07-22 00:00:00",
+      "supplier": "东莞市久尚服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "同一件衣服上面料材质不一样，左边的要光滑   右边的才是正常的布行处理中  ",
+      "reason_1": "面料异常",
+      "reason_2": "面料其他异常",
+      "reason_3": "其他问题",
+      "process_name": "面料数量异常",
+      "purchaser": "李扬贤",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-22 10:20:31",
+          "gmt_modified": "2026-07-29 11:08:09",
+          "duration_hours": 168.8,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "档口回复公司同意短出 不用补裁",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-22 11:07:53",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "档口回复公司同意短出 不用补裁",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-22 10:20:31",
+          "gmt_modified": "2026-07-29 11:08:18",
+          "duration_hours": 168.8,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "档口回复公司同意短出 不用补裁",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-22 11:08:17",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2509",
+          "gmt_create": "2026-07-22 10:20:31",
+          "gmt_modified": "2026-07-31 13:47:06",
+          "duration_hours": 219.4,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "影响范围",
+              "field_value": "返修",
+              "filed_code": 5.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 219.4
+    },
+    {
+      "order_no": "YC260728001",
+      "create_time": "2026-07-28 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "蕾丝染色逾 期",
+      "reason_1": "面料异常",
+      "reason_2": "面料货期异常",
+      "reason_3": "缺货或数量不足",
+      "process_name": "面料数量异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-28 11:30:06",
+          "gmt_modified": "2026-07-31 14:37:45",
+          "duration_hours": 75.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7.26已解决",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.26已解决",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-26 14:37:40",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-28 11:30:06",
+          "gmt_modified": "2026-07-31 14:37:56",
+          "duration_hours": 75.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-26 14:37:53",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.26已解决",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-07-28 11:30:06",
+          "gmt_modified": "2026-09-09 16:49:29",
+          "duration_hours": 1037.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "影响范围",
+              "field_value": "影响货期",
+              "filed_code": 5.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 1037.3
+    },
+    {
+      "order_no": "YC260731001",
+      "create_time": "2026-07-31 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料缩率超标退换逾期",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "缩率不符合要求",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-31 08:30:32",
+          "gmt_modified": "2026-07-31 14:40:41",
+          "duration_hours": 6.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.31处理好发货过去了",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7.31处理好发货过去了",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-31 14:40:35",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-31 08:30:32",
+          "gmt_modified": "2026-07-31 14:41:00",
+          "duration_hours": 6.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-31 14:40:57",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.31处理好发货过去了",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-07-31 08:30:32",
+          "gmt_modified": "2026-08-21 22:38:28",
+          "duration_hours": 518.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 518.1
+    },
+    {
+      "order_no": "YC260804003",
+      "create_time": "2026-08-04 00:00:00",
+      "supplier": "江西美硕实业有限公司",
+      "status": "已完成",
+      "exception_desc": "钢圈图层不牢",
+      "reason_1": "辅料异常",
+      "reason_2": "辅料品质异常",
+      "reason_3": "辅料品质问题",
+      "process_name": "辅料质量&时效异常",
+      "purchaser": "温东",
+      "nodes": [
+        {
+          "node_name": "辅料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3570",
+          "gmt_create": "2026-08-04 16:15:54",
+          "gmt_modified": "2026-08-04 16:18:03",
+          "duration_hours": 0.0,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "已告知图达需尽快发货，回复预计8号寄出。",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-08 16:18:04",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "催促图达尽快发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "辅料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3570",
+          "gmt_create": "2026-08-04 16:15:54",
+          "gmt_modified": "2026-08-04 16:20:52",
+          "duration_hours": 0.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "图达回复最快预计8号寄出",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "图达回复最快预计8号寄出",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-08 16:18:56",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "3176",
+          "gmt_create": "2026-08-04 16:15:54",
+          "gmt_modified": "2026-08-05 13:44:57",
+          "duration_hours": 21.5,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": "2026-08-16 13:44:58",
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 21.5
+    },
+    {
+      "order_no": "YC260703004",
+      "create_time": "2026-07-03 00:00:00",
+      "supplier": "赣州骏海服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "大货面料到厂阴阳色差，刮纱、油污退回面料商更换",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "面料中边色差、段差",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "孙韩飞",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-03 10:15:56",
+          "gmt_modified": "2026-07-12 22:01:31",
+          "duration_hours": 227.8,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "换底重新做货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "换底重新做货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-15 22:01:31",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-03 10:15:56",
+          "gmt_modified": "2026-07-24 13:11:38",
+          "duration_hours": 506.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "优化了供应商 中间工厂反应色牢度问题  送实验室检测合格  7月24日确认大货可用",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-24 13:11:36",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2879",
+          "gmt_create": "2026-07-03 10:15:56",
+          "gmt_modified": "2026-07-29 13:22:05",
+          "duration_hours": 627.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 627.1
+    },
+    {
+      "order_no": "YC260716003",
+      "create_time": "2026-07-16 00:00:00",
+      "supplier": "新兴县新德润制衣有限公司",
+      "status": "已完成",
+      "exception_desc": "标准克重160，实测171.8，多了7.38%",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "克重不符合要求",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "林颖虹",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3556",
+          "gmt_create": "2026-07-16 11:56:30",
+          "gmt_modified": "2026-07-21 15:20:46",
+          "duration_hours": 123.4,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "标准克重160，实测171.8，多了7.38%。QA审批可特采",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-17 15:20:36",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "标准克重160，实测171.8，多了7.38%。QA审批可特采",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3556",
+          "gmt_create": "2026-07-16 11:56:30",
+          "gmt_modified": "2026-07-21 15:22:09",
+          "duration_hours": 123.4,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "标准克重160，实测171.8，多了7.38%。QA审批可特采\n",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-17 15:22:03",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "1026",
+          "gmt_create": "2026-07-16 11:56:30",
+          "gmt_modified": "2026-07-21 15:33:10",
+          "duration_hours": 123.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": "2026-09-06 15:32:44",
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 123.6
+    },
+    {
+      "order_no": "YC260719001",
+      "create_time": "2026-07-19 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "7/18收到面料，严重布次退换供应商回复重做约4天",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "抽纱、节头多、疵点多、条花、横档",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-19 15:27:00",
+          "gmt_modified": "2026-07-21 09:48:35",
+          "duration_hours": 42.4,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "寄过来批",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-21 09:48:30",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "寄过来批",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-19 15:27:00",
+          "gmt_modified": "2026-07-24 09:13:03",
+          "duration_hours": 113.8,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-21 09:11:52",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "不用重做 米样已盖章  属于印花风格 设计可接受",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-07-19 15:27:00",
+          "gmt_modified": "2026-08-21 22:37:41",
+          "duration_hours": 799.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 799.2
+    },
+    {
+      "order_no": "YC260722001",
+      "create_time": "2026-07-22 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料严重布次，",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "抽纱、节头多、疵点多、条花、横档",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-22 08:29:19",
+          "gmt_modified": "2026-07-29 11:06:23",
+          "duration_hours": 170.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.24已补损",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-24 11:06:14",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7.24已补损",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-22 08:29:19",
+          "gmt_modified": "2026-07-29 11:06:36",
+          "duration_hours": 170.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.24已补损",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-24 11:06:34",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-07-22 08:29:19",
+          "gmt_modified": "2026-08-21 22:37:52",
+          "duration_hours": 734.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 734.1
+    },
+    {
+      "order_no": "YC260802004",
+      "create_time": "2026-08-02 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "辅料商没有寄批色卡批色，花边延期",
+      "reason_1": "辅料异常",
+      "reason_2": "辅料货期异常",
+      "reason_3": "辅料发货延期",
+      "process_name": "辅料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "辅料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-02 18:54:28",
+          "gmt_modified": "2026-08-21 11:28:02",
+          "duration_hours": 448.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "已批复",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-03 11:27:53",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "已批复",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "辅料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-02 18:54:28",
+          "gmt_modified": "2026-08-22 16:36:51",
+          "duration_hours": 477.7,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-8发货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-08 16:37:02",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-8发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-02 18:54:28",
+          "gmt_modified": "2026-09-02 16:43:03",
+          "duration_hours": 741.8,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": "2026-09-02 16:43:02",
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 741.8
+    },
+    {
+      "order_no": "YC260807003",
+      "create_time": "2026-08-07 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料逾期未发",
+      "reason_1": "面料异常",
+      "reason_2": "面料货期异常",
+      "reason_3": "缺货或数量不足",
+      "process_name": "面料数量异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-07 22:53:29",
+          "gmt_modified": "2026-08-22 17:30:50",
+          "duration_hours": 354.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-8发货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-8发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-08 17:31:02",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-07 22:53:29",
+          "gmt_modified": "2026-08-22 17:31:07",
+          "duration_hours": 354.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-08 17:31:19",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-8发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-07 22:53:29",
+          "gmt_modified": "2026-09-02 16:44:57",
+          "duration_hours": 617.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "影响范围",
+              "field_value": "影响货期",
+              "filed_code": 5.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 617.9
+    },
+    {
+      "order_no": "YC260812006",
+      "create_time": "2026-08-12 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料不够下单数，重做5天左右",
+      "reason_1": "面料异常",
+      "reason_2": "面料货期异常",
+      "reason_3": "缺货或数量不足",
+      "process_name": "面料数量异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-12 18:10:42",
+          "gmt_modified": "2026-08-22 17:24:01",
+          "duration_hours": 239.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-15发货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-15发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-15 17:23:54",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-12 18:10:42",
+          "gmt_modified": "2026-08-22 17:24:18",
+          "duration_hours": 239.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-15 17:24:29",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-15发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-12 18:10:42",
+          "gmt_modified": "2026-09-02 16:45:27",
+          "duration_hours": 502.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "影响范围",
+              "field_value": "影响货期",
+              "filed_code": 5.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 502.6
+    },
+    {
+      "order_no": "YC260816003",
+      "create_time": "2026-08-16 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料幅宽不够",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "幅宽不符合要求",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-16 08:43:38",
+          "gmt_modified": "2026-09-06 15:34:28",
+          "duration_hours": 510.8,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-17解决",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-17解决",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-17 15:34:24",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-16 08:43:38",
+          "gmt_modified": "2026-09-06 15:34:39",
+          "duration_hours": 510.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-17解决",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-17 15:34:33",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-16 08:43:38",
+          "gmt_modified": "2026-09-09 16:52:03",
+          "duration_hours": 584.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 584.1
+    },
+    {
+      "order_no": "YC260821007",
+      "create_time": "2026-08-21 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "花边颜色未批",
+      "reason_1": "辅料异常",
+      "reason_2": "辅料其他异常",
+      "reason_3": "辅料其他问题",
+      "process_name": "辅料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "辅料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-21 23:18:12",
+          "gmt_modified": "2026-08-22 17:31:33",
+          "duration_hours": 18.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-21 17:31:40",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "已批复",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "已批复",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "辅料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-21 23:18:12",
+          "gmt_modified": "2026-08-22 17:31:46",
+          "duration_hours": 18.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "已批复",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-21 17:31:56",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "已批复",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-21 23:18:12",
+          "gmt_modified": "2026-09-02 16:46:43",
+          "duration_hours": 281.5,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": "2026-09-02 16:46:43",
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 281.5
+    },
+    {
+      "order_no": "YC260823007",
+      "create_time": "2026-08-23 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料底色一块布有2种",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "面料中边色差、段差",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-23 19:16:59",
+          "gmt_modified": "2026-09-06 15:42:25",
+          "duration_hours": 332.4,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-23已换货过去",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-23已换货过去",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-23 15:42:18",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-23 19:16:59",
+          "gmt_modified": "2026-09-06 15:49:33",
+          "duration_hours": 332.5,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-23 15:49:28",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-23已换货过去",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-23 19:16:59",
+          "gmt_modified": "2026-09-09 17:14:32",
+          "duration_hours": 406.0,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 406.0
+    },
+    {
+      "order_no": "YC260824001",
+      "create_time": "2026-08-24 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "花边番染未回",
+      "reason_1": "辅料异常",
+      "reason_2": "辅料品质异常",
+      "reason_3": "辅料品质问题",
+      "process_name": "辅料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "辅料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-24 11:14:39",
+          "gmt_modified": "2026-09-02 16:58:56",
+          "duration_hours": 221.7,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-28 16:58:48",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-28已批复",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-28已批复",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "辅料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-24 11:14:39",
+          "gmt_modified": "2026-09-02 16:59:24",
+          "duration_hours": 221.7,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-28已批复",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-28 16:59:19",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-28已批复",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-24 11:14:39",
+          "gmt_modified": "2026-09-09 17:14:50",
+          "duration_hours": 390.0,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": "2026-09-09 17:14:50",
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 390.0
+    },
+    {
+      "order_no": "YC260824007",
+      "create_time": "2026-08-24 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料批裂寄公司批等回复",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "面料纰裂",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-24 20:57:21",
+          "gmt_modified": "2026-09-06 16:16:11",
+          "duration_hours": 307.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-04 16:16:06",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "9-4质检特采",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "9-4质检特采",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-24 20:57:21",
+          "gmt_modified": "2026-09-06 16:16:22",
+          "duration_hours": 307.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-04 16:16:16",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "9-4质检特采",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-24 20:57:21",
+          "gmt_modified": "2026-09-09 17:14:57",
+          "duration_hours": 380.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 380.3
+    },
+    {
+      "order_no": "YC260826010",
+      "create_time": "2026-08-26 00:00:00",
+      "supplier": "东莞利生制衣有限公司",
+      "status": "已完成",
+      "exception_desc": "CPSWM681868，这款的条纹大货面料，因为面料条纹太弯曲了退回给供应商了，目前供应商反馈只有一条面料了，但是不够我们大货用料，这款需要申请延货期",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "面料纬斜",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "雍金凤",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3499",
+          "gmt_create": "2026-08-26 17:15:52",
+          "gmt_modified": "2026-09-07 11:24:30",
+          "duration_hours": 282.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "恒诗纤重做面料依然存在纬斜，已经沟通此批面料恒诗纤补损9kg交利生避裁做货，已处理完成",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-04 11:24:05",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "已处理完毕",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3499",
+          "gmt_create": "2026-08-26 17:15:52",
+          "gmt_modified": "2026-09-10 14:05:38",
+          "duration_hours": 356.8,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-04 14:05:27",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "已处理",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2334",
+          "gmt_create": "2026-08-26 17:15:52",
+          "gmt_modified": "2026-09-10 14:41:24",
+          "duration_hours": 357.4,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 357.4
+    },
+    {
+      "order_no": "YC260826014",
+      "create_time": "2026-08-26 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料次，破洞全部退回",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "抽纱、节头多、疵点多、条花、横档",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-26 17:30:10",
+          "gmt_modified": "2026-09-06 16:57:48",
+          "duration_hours": 263.5,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-30 16:57:41",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-30补损过去",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-30补损过去",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-26 17:30:10",
+          "gmt_modified": "2026-09-06 16:58:03",
+          "duration_hours": 263.5,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-30 16:57:54",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-30补损过去",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-26 17:30:10",
+          "gmt_modified": "2026-09-09 17:15:52",
+          "duration_hours": 335.8,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 335.8
+    },
+    {
+      "order_no": "YC260828007",
+      "create_time": "2026-08-28 00:00:00",
+      "supplier": "宿迁添成服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "蕾丝面料脏斑较多",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "抽纱、节头多、疵点多、条花、横档",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "孙韩飞",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-28 19:32:30",
+          "gmt_modified": "2026-09-06 17:25:05",
+          "duration_hours": 213.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-30已扣损",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-30 17:11:15",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-30已扣损",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-28 19:32:30",
+          "gmt_modified": "2026-09-06 17:25:17",
+          "duration_hours": 213.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-30已扣损",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-30 17:25:11",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2879",
+          "gmt_create": "2026-08-28 19:32:30",
+          "gmt_modified": "2026-09-08 11:07:54",
+          "duration_hours": 255.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 255.6
+    },
+    {
+      "order_no": "YC260904007",
+      "create_time": "2026-09-04 00:00:00",
+      "supplier": "广州汐宇萱服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料缺货",
+      "reason_1": "面料异常",
+      "reason_2": "面料货期异常",
+      "reason_3": "缺货或数量不足",
+      "process_name": "面料数量异常",
+      "purchaser": "曾程",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-09-04 11:49:12",
+          "gmt_modified": "2026-09-08 10:45:33",
+          "duration_hours": 94.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "9-4料已到工厂",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-04 10:45:28",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "9-4料已到工厂",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-09-04 11:49:12",
+          "gmt_modified": "2026-09-08 10:45:42",
+          "duration_hours": 94.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-04 10:45:37",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "9-4料已到工厂",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "3347",
+          "gmt_create": "2026-09-04 11:49:12",
+          "gmt_modified": "2026-09-08 13:15:52",
+          "duration_hours": 97.4,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "影响范围",
+              "field_value": "已到料",
+              "filed_code": 5.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 97.4
+    },
+    {
+      "order_no": "YC260904008",
+      "create_time": "2026-09-04 00:00:00",
+      "supplier": "赣州骏海服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "网纱面料到厂色差，手感差异。9月3日寄批色卡公司批复",
+      "reason_1": "面料异常",
+      "reason_2": "面料颜色异常",
+      "reason_3": "面辅料与签批样有色差",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "孙韩飞",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-09-04 14:18:45",
+          "gmt_modified": "2026-09-06 18:22:28",
+          "duration_hours": 52.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "9-4已批复",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-04 18:22:23",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "9-4已批复",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-09-04 14:18:45",
+          "gmt_modified": "2026-09-06 18:22:41",
+          "duration_hours": 52.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-04 18:22:37",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "9-4已批复",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2879",
+          "gmt_create": "2026-09-04 14:18:45",
+          "gmt_modified": "2026-09-08 11:09:59",
+          "duration_hours": 92.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 92.9
+    },
+    {
+      "order_no": "YC260904018",
+      "create_time": "2026-09-04 00:00:00",
+      "supplier": "于都晨诺服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "9-4收到花边，发现与面料颜色相差很大，花边退回百业返染",
+      "reason_1": "辅料异常",
+      "reason_2": "辅料颜色异常",
+      "reason_3": "辅料染色与主布有色差",
+      "process_name": "辅料质量&时效异常",
+      "purchaser": "曾程",
+      "nodes": [
+        {
+          "node_name": "辅料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-09-04 19:12:52",
+          "gmt_modified": "2026-09-06 18:52:07",
+          "duration_hours": 47.7,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "9-6重新发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "9-6重新发货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-06 18:52:01",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "辅料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-09-04 19:12:52",
+          "gmt_modified": "2026-09-06 18:52:18",
+          "duration_hours": 47.7,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-06 18:52:14",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "9-6重新发货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "9-6重新发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "3347",
+          "gmt_create": "2026-09-04 19:12:52",
+          "gmt_modified": "2026-09-08 13:13:17",
+          "duration_hours": 90.0,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": "2026-09-23 13:13:48",
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 90.0
+    },
+    {
+      "order_no": "YC260909018",
+      "create_time": "2026-09-09 00:00:00",
+      "supplier": "江西美硕实业有限公司",
+      "status": "已完成",
+      "exception_desc": "旭扬面料原定9/9发，需要延期一天发货，要9/10发",
+      "reason_1": "面料异常",
+      "reason_2": "面料货期异常",
+      "reason_3": "直喷印花定制面料7天未到厂",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "温东",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3313",
+          "gmt_create": "2026-09-09 15:08:15",
+          "gmt_modified": "2026-09-09 15:09:25",
+          "duration_hours": 0.0,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "旭扬说9月10号发货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-09 15:09:01",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "旭扬9月10号发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3313",
+          "gmt_create": "2026-09-09 15:08:15",
+          "gmt_modified": "2026-09-09 15:09:33",
+          "duration_hours": 0.0,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-09 15:09:29",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "旭扬9月10号发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "3176",
+          "gmt_create": "2026-09-09 15:08:15",
+          "gmt_modified": "2026-09-10 09:48:11",
+          "duration_hours": 18.7,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 18.7
+    },
+    {
+      "order_no": "YC260823006",
+      "create_time": "2026-08-23 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料色差，退换",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "面料中边色差、段差",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-23 19:15:55",
+          "gmt_modified": "2026-09-02 16:35:21",
+          "duration_hours": 237.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-23已换货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-23 16:35:15",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-23已换货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-23 19:15:55",
+          "gmt_modified": "2026-09-02 16:35:33",
+          "duration_hours": 237.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-23 16:35:26",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-23已换货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-23 19:15:55",
+          "gmt_modified": "2026-09-09 16:53:03",
+          "duration_hours": 405.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 405.6
+    },
+    {
+      "order_no": "YC260824009",
+      "create_time": "2026-08-24 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料逾期未发",
+      "reason_1": "面料异常",
+      "reason_2": "面料货期异常",
+      "reason_3": "缺货或数量不足",
+      "process_name": "面料数量异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-24 21:09:10",
+          "gmt_modified": "2026-09-06 17:00:15",
+          "duration_hours": 307.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-25发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-25 17:00:09",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-25发货",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-24 21:09:10",
+          "gmt_modified": "2026-09-06 17:00:27",
+          "duration_hours": 307.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-25发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-25 17:00:20",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-24 21:09:10",
+          "gmt_modified": "2026-09-09 17:15:11",
+          "duration_hours": 380.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "影响范围",
+              "field_value": "影响货期",
+              "filed_code": 5.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 380.1
+    },
+    {
+      "order_no": "YC260719002",
+      "create_time": "2026-07-19 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料外观与批色卡差异大",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "弹力跟面料规格表/红扣样对不上",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-19 17:30:08",
+          "gmt_modified": "2026-07-21 09:48:12",
+          "duration_hours": 40.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-28 09:48:04",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "寄过来批",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "寄过来批",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-19 17:30:08",
+          "gmt_modified": "2026-07-24 09:10:48",
+          "duration_hours": 111.7,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "已批复",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-20 09:10:35",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-07-19 17:30:08",
+          "gmt_modified": "2026-08-21 22:37:47",
+          "duration_hours": 797.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 797.1
+    },
+    {
+      "order_no": "YC260727002",
+      "create_time": "2026-07-27 00:00:00",
+      "supplier": "晋江晶为体健服饰制造有限公司",
+      "status": "已完成",
+      "exception_desc": "珠子喷漆不均，有划痕",
+      "reason_1": "辅料异常",
+      "reason_2": "辅料品质异常",
+      "reason_3": "辅料品质问题",
+      "process_name": "辅料质量&时效异常",
+      "purchaser": "陈晓慧",
+      "nodes": [
+        {
+          "node_name": "辅料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3570",
+          "gmt_create": "2026-07-27 09:22:25",
+          "gmt_modified": "2026-07-31 09:33:23",
+          "duration_hours": 96.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-31 09:31:50",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "退回供应商换货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "退回供应商换货",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "辅料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3570",
+          "gmt_create": "2026-07-27 09:22:25",
+          "gmt_modified": "2026-07-31 09:37:13",
+          "duration_hours": 96.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-31 09:33:51",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "退回供应商换货，7/28已寄出新辅料给成衣厂",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "退回供应商换货，7/28已寄出新辅料给成衣厂",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2275",
+          "gmt_create": "2026-07-27 09:22:25",
+          "gmt_modified": "2026-07-31 09:46:36",
+          "duration_hours": 96.4,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": "2026-08-05 09:46:19",
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 96.4
+    },
+    {
+      "order_no": "YC260805007",
+      "create_time": "2026-08-05 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "蕾丝染色逾 期",
+      "reason_1": "面料异常",
+      "reason_2": "面料货期异常",
+      "reason_3": "缺货或数量不足",
+      "process_name": "面料数量异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-05 21:51:01",
+          "gmt_modified": "2026-09-05 17:02:39",
+          "duration_hours": 739.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-01 17:02:20",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "9-1批色通过",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "9-1批色通过",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-05 21:51:01",
+          "gmt_modified": "2026-09-05 17:03:31",
+          "duration_hours": 739.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "9-1批色通过",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-01 17:03:20",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-05 21:51:01",
+          "gmt_modified": "2026-09-09 16:49:49",
+          "duration_hours": 835.0,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "影响范围",
+              "field_value": "影响货期",
+              "filed_code": 5.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 835.0
+    },
+    {
+      "order_no": "YC260819002",
+      "create_time": "2026-08-19 00:00:00",
+      "supplier": "东莞市金景时装有限公司",
+      "status": "已完成",
+      "exception_desc": "珠片面料短码，需退回一条给供应商核对",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "缩率不符合要求",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-19 16:33:03",
+          "gmt_modified": "2026-09-02 16:30:42",
+          "duration_hours": 336.0,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-23已补损20米 ",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-23 16:30:35",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-23已补损20米 ",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-19 16:33:03",
+          "gmt_modified": "2026-09-02 16:43:40",
+          "duration_hours": 336.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-23已补损20米",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-23 16:43:35",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-19 16:33:03",
+          "gmt_modified": "2026-09-09 17:03:20",
+          "duration_hours": 504.5,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 504.5
+    },
+    {
+      "order_no": "YC260826009",
+      "create_time": "2026-08-26 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料批裂",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "面料纰裂",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-26 16:47:37",
+          "gmt_modified": "2026-09-06 16:32:25",
+          "duration_hours": 263.7,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "9-4劈裂ok",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "9-4劈裂ok",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-04 16:32:21",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-26 16:47:37",
+          "gmt_modified": "2026-09-06 16:32:37",
+          "duration_hours": 263.8,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "9-4劈裂ok",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-04 16:32:32",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-26 16:47:37",
+          "gmt_modified": "2026-09-09 17:15:38",
+          "duration_hours": 336.5,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 336.5
+    },
+    {
+      "order_no": "YC260907016",
+      "create_time": "2026-09-07 00:00:00",
+      "supplier": "江西德裕蛇腾制衣有限公司",
+      "status": "审批中",
+      "exception_desc": "9-7号，面料和花边申请批色，",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "面料中边色差、段差",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "曾程",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-09-07 17:05:59",
+          "gmt_modified": "2026-09-08 19:44:03",
+          "duration_hours": 26.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "没收到",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-08 19:43:36",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "没收到",
+              "filed_code": 1.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 26.6
+    },
+    {
+      "order_no": "YC260904012",
+      "create_time": "2026-09-04 00:00:00",
+      "supplier": "于都晨诺服饰有限公司",
+      "status": "审批中",
+      "exception_desc": "大货货米数不够要多收散剪费",
+      "reason_1": "面料异常",
+      "reason_2": "面料价格异常",
+      "reason_3": "订单需求米数达不到面料商起订量",
+      "process_name": "面料数量异常",
+      "purchaser": "曾程",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-09-04 14:25:29",
+          "gmt_modified": "2026-09-06 18:29:14",
+          "duration_hours": 52.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-08 18:28:53",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "核实中 预计周一  ",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "核实中 预计周一",
+              "filed_code": 1.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 52.1
+    },
+    {
+      "order_no": "YC260904014",
+      "create_time": "2026-09-04 00:00:00",
+      "supplier": "赣州骏海服饰有限公司",
+      "status": "审批中",
+      "exception_desc": "大货面料到厂色差大，色光和批色卡不符，退回面料商更换",
+      "reason_1": "面料异常",
+      "reason_2": "面料颜色异常",
+      "reason_3": "面辅料与签批样有色差",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "孙韩飞",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-09-04 17:22:09",
+          "gmt_modified": "2026-09-06 18:49:05",
+          "duration_hours": 49.4,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "档口已寄给工厂选色 工厂还未给结果",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-06 18:48:58",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "档口已寄给工厂选色 工厂还未给结果",
+              "filed_code": 1.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 49.4
+    },
+    {
+      "order_no": "YC260706007",
+      "create_time": "2026-07-06 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "因面料商缺货没有色样导致面料逾期未发",
+      "reason_1": "面料异常",
+      "reason_2": "面料货期异常",
+      "reason_3": "缺货或数量不足",
+      "process_name": "面料数量异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-06 21:00:03",
+          "gmt_modified": "2026-07-31 14:34:14",
+          "duration_hours": 593.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-23 14:34:08",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.23发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7.23发货",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-06 21:00:03",
+          "gmt_modified": "2026-07-31 14:34:28",
+          "duration_hours": 593.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-23 14:34:24",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.23发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-07-06 21:00:03",
+          "gmt_modified": "2026-08-05 16:34:50",
+          "duration_hours": 715.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "影响范围",
+              "field_value": "影响货期",
+              "filed_code": 5.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 715.6
+    },
+    {
+      "order_no": "YC260707002",
+      "create_time": "2026-07-07 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料商2号发的码单，7号还未发面料",
+      "reason_1": "面料异常",
+      "reason_2": "面料货期异常",
+      "reason_3": "缺货或数量不足",
+      "process_name": "面料数量异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-07 14:36:07",
+          "gmt_modified": "2026-07-12 21:45:40",
+          "duration_hours": 127.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.2已发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.2已发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-07 21:45:30",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-07 21:45:30",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7.2已发货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7.2已发货",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-07 14:36:07",
+          "gmt_modified": "2026-07-12 21:45:56",
+          "duration_hours": 127.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-07 21:45:55",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-07 21:45:55",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.2已发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.2已发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-07-07 14:36:07",
+          "gmt_modified": "2026-07-23 17:36:49",
+          "duration_hours": 387.0,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "影响范围",
+              "field_value": "交期",
+              "filed_code": 5.0
+            },
+            {
+              "field_name": "影响范围",
+              "field_value": "交期",
+              "filed_code": 5.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 387.0
+    },
+    {
+      "order_no": "YC260713003",
+      "create_time": "2026-07-13 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料逾期未发",
+      "reason_1": "面料异常",
+      "reason_2": "面料货期异常",
+      "reason_3": "缺货或数量不足",
+      "process_name": "面料数量异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-06 15:56:25",
+          "gmt_modified": "2026-08-22 17:49:07",
+          "duration_hours": 385.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7-13已发货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7-13已发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7-13已发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-13 17:49:13",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7-13已发货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-13 17:49:13",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-06 15:56:25",
+          "gmt_modified": "2026-08-22 17:49:20",
+          "duration_hours": 385.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-13 17:49:29",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7-13已发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-06 15:56:25",
+          "gmt_modified": "2026-08-27 15:17:08",
+          "duration_hours": 503.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "影响范围",
+              "field_value": "影响货期",
+              "filed_code": 5.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 503.3
+    },
+    {
+      "order_no": "YC260804002",
+      "create_time": "2026-08-04 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料颜色与批样差异大，且6条布有4个颜色供应商要求退换5天左右",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "面料中边色差、段差",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-04 12:05:31",
+          "gmt_modified": "2026-08-18 11:43:09",
+          "duration_hours": 335.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-12 11:43:02",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-12已换货 ",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-12已换货 ",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-04 12:05:31",
+          "gmt_modified": "2026-08-18 11:43:24",
+          "duration_hours": 335.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-12 11:43:21",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-12已换货 ",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-04 12:05:31",
+          "gmt_modified": "2026-09-02 16:43:49",
+          "duration_hours": 700.6,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": "2026-09-02 16:43:49",
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 700.6
+    },
+    {
+      "order_no": "YC260812004",
+      "create_time": "2026-08-12 00:00:00",
+      "supplier": "含山县海达服饰有限公司",
+      "status": "审批中",
+      "exception_desc": "8.4日下单回复交期5-7天。交期到了又回复颜色有问题延迟发货",
+      "reason_1": "面料异常",
+      "reason_2": "面料货期异常",
+      "reason_3": "直喷印花定制面料7天未到厂",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "王丹",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3313",
+          "gmt_create": "2026-08-12 10:06:29",
+          "gmt_modified": "2026-08-12 10:09:53",
+          "duration_hours": 0.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-13 10:09:39",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-13发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "加急生产中，赶8-13发货，特殊面料货期为15天",
+              "filed_code": 1.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3313",
+          "gmt_create": "2026-08-12 10:06:29",
+          "gmt_modified": "2026-08-13 10:19:52",
+          "duration_hours": 24.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-12已发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-12 10:19:45",
+              "filed_code": 4.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 24.2
+    },
+    {
+      "order_no": "YC260816002",
+      "create_time": "2026-08-16 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料幅宽不够，系统120实际110CM",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "幅宽不符合要求",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-16 08:41:36",
+          "gmt_modified": "2026-09-02 09:53:34",
+          "duration_hours": 409.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "系统幅宽是白色未染色前的 染色后幅宽110  缩水率8个点与系统的缩水率一致 ",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-16 09:53:07",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "系统幅宽是白色未染色前的 染色后幅宽110  缩水率8个点与系统的缩水率一致 ",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-16 08:41:36",
+          "gmt_modified": "2026-09-06 15:34:17",
+          "duration_hours": 510.9,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-17 15:34:13",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-17解决",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-16 08:41:36",
+          "gmt_modified": "2026-09-09 16:51:58",
+          "duration_hours": 584.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 584.2
+    },
+    {
+      "order_no": "YC260818002",
+      "create_time": "2026-08-18 00:00:00",
+      "supplier": "临泉县浪鲨克工贸有限公司",
+      "status": "已完成",
+      "exception_desc": "壕鑫印花，8/12 下单，8/18发货，预计8/21 到厂，超7天时效",
+      "reason_1": "面料异常",
+      "reason_2": "面料货期异常",
+      "reason_3": "直喷印花定制面料7天未到厂",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "陈晓慧",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3313",
+          "gmt_create": "2026-08-18 10:44:18",
+          "gmt_modified": "2026-08-18 15:49:27",
+          "duration_hours": 5.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "壕鑫回复8-18发货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-18发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-18 15:49:16",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3313",
+          "gmt_create": "2026-08-18 10:44:18",
+          "gmt_modified": "2026-08-19 10:10:19",
+          "duration_hours": 23.4,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-18已发货",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-18 10:10:12",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2275",
+          "gmt_create": "2026-08-18 10:44:18",
+          "gmt_modified": "2026-08-21 09:32:45",
+          "duration_hours": 70.8,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": "2026-09-06 09:32:31",
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 70.8
+    },
+    {
+      "order_no": "YC260823001",
+      "create_time": "2026-08-23 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料颜色差异大，寄公司批",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "面料中边色差、段差",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-23 19:06:15",
+          "gmt_modified": "2026-09-02 11:23:00",
+          "duration_hours": 232.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-24 11:22:54",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-24已批复",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-24已批复",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-23 19:06:15",
+          "gmt_modified": "2026-09-02 11:23:13",
+          "duration_hours": 232.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-24已批复",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-08-24 11:23:06",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-23 19:06:15",
+          "gmt_modified": "2026-09-09 17:13:45",
+          "duration_hours": 406.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 406.1
+    },
+    {
+      "order_no": "YC260823003",
+      "create_time": "2026-08-23 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料颜色与批样差异大寄公司批",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "面料中边色差、段差",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-23 19:09:30",
+          "gmt_modified": "2026-09-02 11:25:23",
+          "duration_hours": 232.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-24已批复",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "8-24已批复",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-08-24 11:25:15",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-08-23 19:09:30",
+          "gmt_modified": "2026-09-02 11:25:38",
+          "duration_hours": 232.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-24 11:25:34",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "8-24已批复",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-08-23 19:09:30",
+          "gmt_modified": "2026-09-09 17:14:02",
+          "duration_hours": 406.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 406.1
+    },
+    {
+      "order_no": "YC260826013",
+      "create_time": "2026-08-26 00:00:00",
+      "supplier": "东莞利生制衣有限公司",
+      "status": "已完成",
+      "exception_desc": "CPSWM681868，这款的条纹大货面料，因为面料条纹太弯曲了退回给供应商了，目前供应商反馈只有一条面料了，但是不够我们大货用料，这款需要申请延货期",
+      "reason_1": "面料异常",
+      "reason_2": "面料品质异常",
+      "reason_3": "面料纬斜",
+      "process_name": "面料质量&时效异常",
+      "purchaser": "雍金凤",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3499",
+          "gmt_create": "2026-08-26 17:21:12",
+          "gmt_modified": "2026-09-07 09:41:18",
+          "duration_hours": 280.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-04 09:33:11",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-04 09:33:11",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-04 09:33:11",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "处理完成",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "处理完成",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "处理完成",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "恒诗纤重做面料依然存在纬斜，已经沟通此批面料恒诗纤补损9kg交利生避裁做货。",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "恒诗纤重做面料依然存在纬斜，已经沟通此批面料恒诗纤补损9kg交利生避裁做货。",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "恒诗纤重做面料依然存在纬斜，已经沟通此批面料恒诗纤补损9kg交利生避裁做货。",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3499",
+          "gmt_create": "2026-08-26 17:21:12",
+          "gmt_modified": "2026-09-10 14:07:38",
+          "duration_hours": 356.8,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "已处理",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "已处理",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "已处理",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-04 14:07:29",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-04 14:07:29",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-04 14:07:29",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2334",
+          "gmt_create": "2026-08-26 17:21:12",
+          "gmt_modified": "2026-09-10 14:40:55",
+          "duration_hours": 357.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            },
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            },
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": null,
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 357.3
+    },
+    {
+      "order_no": "YC260906004",
+      "create_time": "2026-09-06 00:00:00",
+      "supplier": "于都晨诺服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "拉链9-4下单，预计9-9做好，9-11收到",
+      "reason_1": "辅料异常",
+      "reason_2": "辅料货期异常",
+      "reason_3": "辅料缺货或数量不足",
+      "process_name": "辅料质量&时效异常",
+      "purchaser": "曾程",
+      "nodes": [
+        {
+          "node_name": "辅料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-09-06 13:57:31",
+          "gmt_modified": "2026-09-08 11:01:03",
+          "duration_hours": 45.1,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "预计9-9发货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-09 11:00:58",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "预计9-9发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "辅料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-09-06 13:57:31",
+          "gmt_modified": "2026-09-08 11:17:46",
+          "duration_hours": 45.3,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "9-8已发货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-07 11:17:33",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "9-7已发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "3347",
+          "gmt_create": "2026-09-06 13:57:31",
+          "gmt_modified": "2026-09-08 13:11:29",
+          "duration_hours": 47.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": "2026-09-22 13:12:04",
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 47.2
+    },
+    {
+      "order_no": "YC260907002",
+      "create_time": "2026-09-07 00:00:00",
+      "supplier": "东莞市久尚服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "花边批色 9/4号批OK ",
+      "reason_1": "辅料异常",
+      "reason_2": "辅料颜色异常",
+      "reason_3": "辅料染色与主布有色差",
+      "process_name": "辅料质量&时效异常",
+      "purchaser": "李扬贤",
+      "nodes": [
+        {
+          "node_name": "辅料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-09-07 09:44:04",
+          "gmt_modified": "2026-09-08 11:14:10",
+          "duration_hours": 25.5,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "花边批色 9/4号批OK",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "花边批色 9/4号批OK",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-04 11:14:04",
+              "filed_code": 2.0
+            }
+          ]
+        },
+        {
+          "node_name": "辅料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-09-07 09:44:04",
+          "gmt_modified": "2026-09-08 11:14:18",
+          "duration_hours": 25.5,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "最终处理方案",
+              "field_value": "花边批色 9/4号批OK",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "花边批色 9/4号批OK",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-09-04 11:14:14",
+              "filed_code": 4.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2509",
+          "gmt_create": "2026-09-07 09:44:04",
+          "gmt_modified": "2026-09-08 13:09:35",
+          "duration_hours": 27.4,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "调整后的预计到仓日期",
+              "field_value": "2026-09-22 13:09:30",
+              "filed_code": 6.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 27.4
+    },
+    {
+      "order_no": "YC260909043",
+      "create_time": "2026-09-09 00:00:00",
+      "supplier": "赣州骏海服饰有限公司",
+      "status": "审批中",
+      "exception_desc": "翻单拉链价格由7.88元变更8.35元。麻烦更新一下核价",
+      "reason_1": "价格差异",
+      "reason_2": "价格异常",
+      "reason_3": "面辅料变更价格差异",
+      "process_name": "价格差异",
+      "purchaser": "孙韩飞",
+      "nodes": [
+        {
+          "node_name": "成本部确认价格异常内容",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "2344",
+          "gmt_create": "2026-09-09 21:11:09",
+          "gmt_modified": "2026-09-17 09:54:07",
+          "duration_hours": 180.7,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-09-17 09:53:17",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "PLM已更新核价",
+              "filed_code": 3.0
+            },
+            {
+              "field_name": "异常进度描述",
+              "field_value": "拉链价格变更",
+              "filed_code": 1.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 180.7
+    },
+    {
+      "order_no": "YC260723004",
+      "create_time": "2026-07-23 00:00:00",
+      "supplier": "赣州市棱致服饰有限公司",
+      "status": "已完成",
+      "exception_desc": "面料逾期未发",
+      "reason_1": "面料异常",
+      "reason_2": "面料货期异常",
+      "reason_3": "缺货或数量不足",
+      "process_name": "面料数量异常",
+      "purchaser": "赖晓敏",
+      "nodes": [
+        {
+          "node_name": "面料组接收处理异常",
+          "node_seq": 1,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-23 20:27:42",
+          "gmt_modified": "2026-07-29 11:18:17",
+          "duration_hours": 134.8,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常进度描述",
+              "field_value": "7.20报单 仓库货有问题 重新做货 7.26发货",
+              "filed_code": 1.0
+            },
+            {
+              "field_name": "异常结束时间",
+              "field_value": "2026-07-27 11:16:45",
+              "filed_code": 2.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "7.20报单 7.26发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "面料组完成异常处理",
+          "node_seq": 2,
+          "status": 3,
+          "handler_id": "3378",
+          "gmt_create": "2026-07-23 20:27:42",
+          "gmt_modified": "2026-07-29 11:26:27",
+          "duration_hours": 135.0,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "异常实际结束时间",
+              "field_value": "2026-07-27 11:26:26",
+              "filed_code": 4.0
+            },
+            {
+              "field_name": "最终处理方案",
+              "field_value": "重新做货 7.26发货",
+              "filed_code": 3.0
+            }
+          ]
+        },
+        {
+          "node_name": "订单组确认异常处理结果",
+          "node_seq": 3,
+          "status": 3,
+          "handler_id": "2371",
+          "gmt_create": "2026-07-23 20:27:42",
+          "gmt_modified": "2026-08-21 22:38:03",
+          "duration_hours": 698.2,
+          "is_del": 0,
+          "fields": [
+            {
+              "field_name": "影响范围",
+              "field_value": "影响货期",
+              "filed_code": 5.0
+            }
+          ]
+        }
+      ],
+      "total_hours": 698.2
+    }
+  ]
+}

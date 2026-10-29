@@ -53,3 +53,9 @@ Thumbs.db
 
 # Logs
 *.log
+
+# 含敏感凭证的临时脚本
+check_sheets*.py
+feishu_api/.token_cache.json
+feishu_api/feishu_chats_*.json
+feishu_api/_verify.txt

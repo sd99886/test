@@ -1,0 +1,54 @@
+"""
+飞书每日任务推送 - 配置文件模板
+
+使用前请复制为 config.py 并填写真实值:
+    cp config.py.example config.py
+"""
+
+# ==================== 飞书项目 MCP ====================
+# 从飞书项目「开发者设置」获取
+MCP_TOKEN = "m-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+MCP_SERVER_URL = "https://project.feishu.cn/mcp_server/v1"
+
+# 项目配置
+VIEW_ID = "xxxxxxxxx"  # Epic 视图 ID
+PROJECT_KEY = "xxxxxxxxxxxxxxxxxxxxxxxx"  # 项目 key (URL 中的 simple_name)
+
+# 目标负责人
+TARGET_PERSON_NAME = "Jenhao-初人豪"
+TARGET_USER_KEY = "xxxxxxxxxxxxxxxxxxx"  # 飞书项目中的用户 key
+
+# ==================== 飞书开放平台 ====================
+# 从飞书开放平台「凭证与基础信息」获取
+APP_ID = "cli_xxxxxxxxxxxxxxxx"
+APP_SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# OAuth2 配置
+OAUTH_REDIRECT_URI = "http://localhost:8899/callback"
+OAUTH_SCOPE = "task:task:read im:chat im:message im:message:readonly"
+
+# ==================== 群消息监听 ====================
+# 目标群名称(必须与飞书中完全一致)
+TARGET_GROUP_NAME = "你的目标群名"
+
+# 目标用户的 open_id (用于 @mention 检测,不受改名影响)
+TARGET_OPEN_ID = "ou_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# 备用:文本回退匹配这些名字
+MENTION_NAMES = ["你的名字", "英文名", "中文名"]
+
+# ==================== 通知推送 ====================
+# 通过应用机器人私聊推送给你
+NOTIFY_USER_OPEN_ID = "ou_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# 如果使用 Webhook 推送(可选)
+# WEBHOOK_URL = "https://open.feishu.cn/open-apis/bot/v2/hook/xxxxxxxx"
+
+# ==================== AI 任务提取(可选) ====================
+# 留空使用规则提取,填写 API Key 使用 LLM 智能提取
+AI_API_KEY = ""
+AI_BASE_URL = "https://api.openai.com/v1"
+AI_MODEL = "gpt-3.5-turbo"
+
+# ==================== 输出配置 ====================
+OUTPUT_DIR = "output"
