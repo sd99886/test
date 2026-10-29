@@ -59,3 +59,31 @@ check_sheets*.py
 feishu_api/.token_cache.json
 feishu_api/feishu_chats_*.json
 feishu_api/_verify.txt
+
+# Token 缓存文件
+*token_cache*.json
+
+# 一次性临时脚本与输出（已清理）
+analyze_dataset*.py
+analyze_scd2.py
+embed_data.py
+expand_fabric_daily.py
+generate_bi_data.py
+gen_sql.py
+gen_offline_timeline_sql.py
+verify_offline_timeline*.py
+01_truncate_offline_timeline.sql
+02_insert_offline_timeline*
+dataset_analysis.txt
+bi_dashboard_demo.html
+bi_demo_data.json
+dashboard_*.png
+gantt_*.png
+optimized_query.sql
+
+# 临时打包文件
+*.zip
+
+# 构建/输出临时目录
+dist/
+out/
